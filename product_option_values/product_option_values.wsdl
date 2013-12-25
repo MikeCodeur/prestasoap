@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Product_option_values/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Product_option_values/"
+	name="Product_option_values" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Product_option_values/">
+					
+			<xsd:element name="GetProduct_option_valuesRequest" type="tns:GetInput" />
+			<xsd:element name="GetProduct_option_valuesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetProduct_option_valueByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetProduct_option_valueByIdResponse" type="tns:product_option_values" />
+			
+			<xsd:element name="CreateProduct_option_valueRequest" type="tns:AddProduct_option_valueInput" />
+			<xsd:element name="CreateProduct_option_valueResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateProduct_option_valueRequest" type="tns:AddProduct_option_valueInput" />
+			<xsd:element name="UpdateProduct_option_valueResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteProduct_option_valueRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteProduct_option_valueResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddProduct_option_valueInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="product_option_value" type="tns:product_option_value" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_option_values">
+				<xsd:sequence>
+					<xsd:element name="product_option_value" type="tns:product_option_value" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_option_value">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_attribute_group" type="xsd:string" />
+					<xsd:element name="color" type="xsd:string" />
+					<xsd:element name="position" type="xsd:string" />					
+					<xsd:element name="name" type="tns:name" />				
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="name">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetProduct_option_valuesRequest">
+		<wsdl:part element="tns:GetProduct_option_valuesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetProduct_option_valuesResponse">
+		<wsdl:part element="tns:GetProduct_option_valuesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetProduct_option_valueByIdRequest">
+		<wsdl:part element="tns:GetProduct_option_valueByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetProduct_option_valueByIdResponse">
+		<wsdl:part element="tns:GetProduct_option_valueByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateProduct_option_valueRequest">
+		<wsdl:part element="tns:CreateProduct_option_valueRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateProduct_option_valueResponse">
+		<wsdl:part element="tns:CreateProduct_option_valueResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateProduct_option_valueRequest">
+		<wsdl:part element="tns:UpdateProduct_option_valueRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateProduct_option_valueResponse">
+		<wsdl:part element="tns:UpdateProduct_option_valueResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteProduct_option_valueRequest">
+		<wsdl:part element="tns:DeleteProduct_option_valueRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteProduct_option_valueResponse">
+		<wsdl:part element="tns:DeleteProduct_option_valueResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Product_option_values">
+	
+	
+		<wsdl:operation name="GetProduct_option_values">
+			<wsdl:input message="tns:GetProduct_option_valuesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetProduct_option_valuesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetProduct_option_valueById">
+			<wsdl:input message="tns:GetProduct_option_valueByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetProduct_option_valueByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateProduct_option_value">
+			<wsdl:input message="tns:CreateProduct_option_valueRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateProduct_option_valueResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateProduct_option_value">
+			<wsdl:input message="tns:UpdateProduct_option_valueRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateProduct_option_valueResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProduct_option_value">
+			<wsdl:input message="tns:DeleteProduct_option_valueRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteProduct_option_valueResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Product_option_valuesSOAP" type="tns:Product_option_values">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetProduct_option_values">
+			<soap:operation soapAction="http://www.prestashop.com/product_option_values/GetProduct_option_values" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetProduct_option_valueById">
+			<soap:operation soapAction="http://www.prestashop.com/product_option_values/GetProduct_option_valueById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateProduct_option_value">
+			<soap:operation soapAction="http://www.prestashop.com/product_option_values/CreateProduct_option_value" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateProduct_option_value">
+			<soap:operation soapAction="http://www.prestashop.com/product_option_values/UpdateProduct_option_value" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProduct_option_value">
+			<soap:operation soapAction="http://www.prestashop.com/product_option_values/DeleteProduct_option_value" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Product_option_values">
+		<wsdl:port binding="tns:Product_option_valuesSOAP" name="Product_option_valuesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/product_option_values/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

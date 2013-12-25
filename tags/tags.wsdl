@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Tags/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Tags/"
+	name="Tags" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Tags/">
+			
+			<xsd:element name="GettagsRequest" type="tns:GetInput" />
+			<xsd:element name="GettagsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GettagByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GettagByIdResponse" type="tns:tags" />
+			
+			<xsd:element name="CreatetagRequest" type="tns:AddtagInput" />
+			<xsd:element name="CreatetagResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdatetagRequest" type="tns:AddtagInput" />
+			<xsd:element name="UpdatetagResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeletetagRequest" type="tns:DelInput" />
+			<xsd:element name="DeletetagResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddtagInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="tag" type="tns:tag" />
+				</xsd:all>
+			</xsd:complexType>
+				
+			<xsd:complexType name="tags">
+				<xsd:sequence>
+					<xsd:element name="tag" type="tns:tag" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="tag">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_lang" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GettagsRequest">
+		<wsdl:part element="tns:GettagsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GettagsResponse">
+		<wsdl:part element="tns:GettagsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GettagByIdRequest">
+		<wsdl:part element="tns:GettagByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GettagByIdResponse">
+		<wsdl:part element="tns:GettagByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreatetagRequest">
+		<wsdl:part element="tns:CreatetagRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreatetagResponse">
+		<wsdl:part element="tns:CreatetagResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdatetagRequest">
+		<wsdl:part element="tns:UpdatetagRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdatetagResponse">
+		<wsdl:part element="tns:UpdatetagResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeletetagRequest">
+		<wsdl:part element="tns:DeletetagRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeletetagResponse">
+		<wsdl:part element="tns:DeletetagResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="tags">
+	
+	
+		<wsdl:operation name="Gettags">
+			<wsdl:input message="tns:GettagsRequest"></wsdl:input>
+			<wsdl:output message="tns:GettagsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GettagById">
+			<wsdl:input message="tns:GettagByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GettagByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Createtag">
+			<wsdl:input message="tns:CreatetagRequest"></wsdl:input>
+			<wsdl:output message="tns:CreatetagResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Updatetag">
+			<wsdl:input message="tns:UpdatetagRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdatetagResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Deletetag">
+			<wsdl:input message="tns:DeletetagRequest"></wsdl:input>
+			<wsdl:output message="tns:DeletetagResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="tagsSOAP" type="tns:tags">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="Gettags">
+			<soap:operation soapAction="http://www.prestashop.com/tags/Gettags" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GettagById">
+			<soap:operation soapAction="http://www.prestashop.com/tags/GettagById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Createtag">
+			<soap:operation soapAction="http://www.prestashop.com/tags/Createtag" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Updatetag">
+			<soap:operation soapAction="http://www.prestashop.com/tags/Updatetag" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Deletetag">
+			<soap:operation soapAction="http://www.prestashop.com/tags/Deletetag" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="tags">
+		<wsdl:port binding="tns:tagsSOAP" name="tagsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/tags/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

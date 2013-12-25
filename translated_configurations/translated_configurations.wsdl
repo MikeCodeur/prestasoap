@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Translated_configurations/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Translated_configurations/"
+	name="Translated_configurations" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Translated_configurations/">
+					
+			<xsd:element name="GetTranslated_configurationsRequest" type="tns:GetInput" />
+			<xsd:element name="GetTranslated_configurationsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetTranslated_configurationByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetTranslated_configurationByIdResponse" type="tns:translated_configurations" />
+			
+			<xsd:element name="CreateTranslated_configurationRequest" type="tns:AddTranslated_configurationInput" />
+			<xsd:element name="CreateTranslated_configurationResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateTranslated_configurationRequest" type="tns:AddTranslated_configurationInput" />
+			<xsd:element name="UpdateTranslated_configurationResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteTranslated_configurationRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteTranslated_configurationResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddTranslated_configurationInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="translated_configuration" type="tns:translated_configuration" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="translated_configurations">
+				<xsd:sequence>
+					<xsd:element name="translated_configuration" type="tns:translated_configuration" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="translated_configuration">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="value" type="tns:value" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="id_shop_group" type="xsd:string" />
+					<xsd:element name="id_shop" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="value">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetTranslated_configurationsRequest">
+		<wsdl:part element="tns:GetTranslated_configurationsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetTranslated_configurationsResponse">
+		<wsdl:part element="tns:GetTranslated_configurationsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetTranslated_configurationByIdRequest">
+		<wsdl:part element="tns:GetTranslated_configurationByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetTranslated_configurationByIdResponse">
+		<wsdl:part element="tns:GetTranslated_configurationByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateTranslated_configurationRequest">
+		<wsdl:part element="tns:CreateTranslated_configurationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateTranslated_configurationResponse">
+		<wsdl:part element="tns:CreateTranslated_configurationResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateTranslated_configurationRequest">
+		<wsdl:part element="tns:UpdateTranslated_configurationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateTranslated_configurationResponse">
+		<wsdl:part element="tns:UpdateTranslated_configurationResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteTranslated_configurationRequest">
+		<wsdl:part element="tns:DeleteTranslated_configurationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteTranslated_configurationResponse">
+		<wsdl:part element="tns:DeleteTranslated_configurationResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Translated_configurations">
+	
+	
+		<wsdl:operation name="GetTranslated_configurations">
+			<wsdl:input message="tns:GetTranslated_configurationsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetTranslated_configurationsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetTranslated_configurationById">
+			<wsdl:input message="tns:GetTranslated_configurationByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetTranslated_configurationByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateTranslated_configuration">
+			<wsdl:input message="tns:CreateTranslated_configurationRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateTranslated_configurationResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateTranslated_configuration">
+			<wsdl:input message="tns:UpdateTranslated_configurationRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateTranslated_configurationResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteTranslated_configuration">
+			<wsdl:input message="tns:DeleteTranslated_configurationRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteTranslated_configurationResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Translated_configurationsSOAP" type="tns:Translated_configurations">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetTranslated_configurations">
+			<soap:operation soapAction="http://www.prestashop.com/translated_configurations/GetTranslated_configurations" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetTranslated_configurationById">
+			<soap:operation soapAction="http://www.prestashop.com/translated_configurations/GetTranslated_configurationById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateTranslated_configuration">
+			<soap:operation soapAction="http://www.prestashop.com/translated_configurations/CreateTranslated_configuration" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateTranslated_configuration">
+			<soap:operation soapAction="http://www.prestashop.com/translated_configurations/UpdateTranslated_configuration" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteTranslated_configuration">
+			<soap:operation soapAction="http://www.prestashop.com/translated_configurations/DeleteTranslated_configuration" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Translated_configurations">
+		<wsdl:port binding="tns:Translated_configurationsSOAP" name="Translated_configurationsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/translated_configurations/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

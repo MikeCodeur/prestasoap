@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Product_feature_values/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Product_feature_values/"
+	name="Product_feature_values" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Product_feature_values/">
+			
+			<xsd:element name="GetProduct_feature_valuesRequest" type="tns:GetInput" />
+			<xsd:element name="GetProduct_feature_valuesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetProduct_feature_valueByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetProduct_feature_valueByIdResponse" type="tns:product_feature_values" />
+			
+			<xsd:element name="CreateProduct_feature_valueRequest" type="tns:AddProduct_feature_valueInput" />
+			<xsd:element name="CreateProduct_feature_valueResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateProduct_feature_valueRequest" type="tns:AddProduct_feature_valueInput" />
+			<xsd:element name="UpdateProduct_feature_valueResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteProduct_feature_valueRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteProduct_feature_valueResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddProduct_feature_valueInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="product_feature_value" type="tns:product_feature_value" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_feature_values">
+				<xsd:sequence>
+					<xsd:element name="product_feature_value" type="tns:product_feature_value" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_feature_value">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_feature" type="xsd:string" />
+					<xsd:element name="custom" type="xsd:string" />
+					<xsd:element name="value" type="tns:value" />				
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="value">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetProduct_feature_valuesRequest">
+		<wsdl:part element="tns:GetProduct_feature_valuesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetProduct_feature_valuesResponse">
+		<wsdl:part element="tns:GetProduct_feature_valuesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetProduct_feature_valueByIdRequest">
+		<wsdl:part element="tns:GetProduct_feature_valueByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetProduct_feature_valueByIdResponse">
+		<wsdl:part element="tns:GetProduct_feature_valueByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateProduct_feature_valueRequest">
+		<wsdl:part element="tns:CreateProduct_feature_valueRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateProduct_feature_valueResponse">
+		<wsdl:part element="tns:CreateProduct_feature_valueResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateProduct_feature_valueRequest">
+		<wsdl:part element="tns:UpdateProduct_feature_valueRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateProduct_feature_valueResponse">
+		<wsdl:part element="tns:UpdateProduct_feature_valueResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteProduct_feature_valueRequest">
+		<wsdl:part element="tns:DeleteProduct_feature_valueRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteProduct_feature_valueResponse">
+		<wsdl:part element="tns:DeleteProduct_feature_valueResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Product_feature_values">
+	
+	
+		<wsdl:operation name="GetProduct_feature_values">
+			<wsdl:input message="tns:GetProduct_feature_valuesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetProduct_feature_valuesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetProduct_feature_valueById">
+			<wsdl:input message="tns:GetProduct_feature_valueByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetProduct_feature_valueByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateProduct_feature_value">
+			<wsdl:input message="tns:CreateProduct_feature_valueRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateProduct_feature_valueResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateProduct_feature_value">
+			<wsdl:input message="tns:UpdateProduct_feature_valueRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateProduct_feature_valueResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProduct_feature_value">
+			<wsdl:input message="tns:DeleteProduct_feature_valueRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteProduct_feature_valueResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Product_feature_valuesSOAP" type="tns:Product_feature_values">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetProduct_feature_values">
+			<soap:operation soapAction="http://www.prestashop.com/product_feature_values/GetProduct_feature_values" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetProduct_feature_valueById">
+			<soap:operation soapAction="http://www.prestashop.com/product_feature_values/GetProduct_feature_valueById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateProduct_feature_value">
+			<soap:operation soapAction="http://www.prestashop.com/product_feature_values/CreateProduct_feature_value" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateProduct_feature_value">
+			<soap:operation soapAction="http://www.prestashop.com/product_feature_values/UpdateProduct_feature_value" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProduct_feature_value">
+			<soap:operation soapAction="http://www.prestashop.com/product_feature_values/DeleteProduct_feature_value" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Product_feature_values">
+		<wsdl:port binding="tns:Product_feature_valuesSOAP" name="Product_feature_valuesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/product_feature_values/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

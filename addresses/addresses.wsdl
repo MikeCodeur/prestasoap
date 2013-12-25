@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Addresses/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Addresses/"
+	name="Addresses" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Addresses/">
+						
+			<xsd:element name="GetAddressesRequest" type="tns:GetInput" />
+			<xsd:element name="GetAddressesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetAddressByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetAddressByIdResponse" type="tns:addresses" />
+			
+			<xsd:element name="CreateAddressRequest" type="tns:AddAddressInput" />
+			<xsd:element name="CreateAddressResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateAddressRequest" type="tns:AddAddressInput" />
+			<xsd:element name="UpdateAddressResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteAddressRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteAddressResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddAddressInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="address" type="tns:address" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="addresses">
+				<xsd:sequence>
+					<xsd:element name="address" type="tns:address" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="address">
+				<xsd:all>
+					<!-- get From sampleCore-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_customer" type="xsd:string" />
+					<xsd:element name="id_manufacturer" type="xsd:string" />
+					<xsd:element name="id_supplier" type="xsd:string" />
+					<xsd:element name="id_warehouse" type="xsd:string" />
+					<xsd:element name="id_country" type="xsd:string" />
+					<xsd:element name="id_state" type="xsd:string" />
+					<xsd:element name="alias" type="xsd:string" />
+					<xsd:element name="company" type="xsd:string" />
+					<xsd:element name="lastname" type="xsd:string" />
+					<xsd:element name="firstname" type="xsd:string" />
+					<xsd:element name="vat_number" type="xsd:string" />
+					<xsd:element name="address1" type="xsd:string" />
+					<xsd:element name="address2" type="xsd:string" />
+					<xsd:element name="postcode" type="xsd:string" />
+					<xsd:element name="city" type="xsd:string" />
+					<xsd:element name="other" type="xsd:string" />
+					<xsd:element name="phone" type="xsd:string" />
+					<xsd:element name="phone_mobile" type="xsd:string" />
+					<xsd:element name="dni" type="xsd:string" />
+					<xsd:element name="deleted" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+					
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+	
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetAddressesRequest">
+		<wsdl:part element="tns:GetAddressesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetAddressesResponse">
+		<wsdl:part element="tns:GetAddressesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetAddressByIdRequest">
+		<wsdl:part element="tns:GetAddressByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetAddressByIdResponse">
+		<wsdl:part element="tns:GetAddressByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateAddressRequest">
+		<wsdl:part element="tns:CreateAddressRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateAddressResponse">
+		<wsdl:part element="tns:CreateAddressResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateAddressRequest">
+		<wsdl:part element="tns:UpdateAddressRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateAddressResponse">
+		<wsdl:part element="tns:UpdateAddressResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteAddressRequest">
+		<wsdl:part element="tns:DeleteAddressRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteAddressResponse">
+		<wsdl:part element="tns:DeleteAddressResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Addresses">
+	
+	
+		<wsdl:operation name="GetAddresses">
+			<wsdl:input message="tns:GetAddressesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetAddressesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetAddressById">
+			<wsdl:input message="tns:GetAddressByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetAddressByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateAddress">
+			<wsdl:input message="tns:CreateAddressRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateAddressResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateAddress">
+			<wsdl:input message="tns:UpdateAddressRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateAddressResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteAddress">
+			<wsdl:input message="tns:DeleteAddressRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteAddressResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="AddressesSOAP" type="tns:Addresses">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetAddresses">
+			<soap:operation soapAction="http://www.prestashop.com/addresses/GetAddresses" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetAddressById">
+			<soap:operation soapAction="http://www.prestashop.com/addresses/GetAddressById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateAddress">
+			<soap:operation soapAction="http://www.prestashop.com/addresses/CreateAddress" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateAddress">
+			<soap:operation soapAction="http://www.prestashop.com/addresses/UpdateAddress" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteAddress">
+			<soap:operation soapAction="http://www.prestashop.com/addresses/DeleteAddress" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Addresses">
+		<wsdl:port binding="tns:AddressesSOAP" name="AddressesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/addresses/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

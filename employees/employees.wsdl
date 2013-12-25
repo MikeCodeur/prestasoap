@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Employees/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Employees/"
+	name="Employees" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Employees/">
+			
+			<xsd:element name="GetEmployeesRequest" type="tns:GetInput" />
+			<xsd:element name="GetEmployeesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetEmployeeByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetEmployeeByIdResponse" type="tns:employees" />
+			
+			<xsd:element name="CreateEmployeeRequest" type="tns:AddEmployeeInput" />
+			<xsd:element name="CreateEmployeeResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateEmployeeRequest" type="tns:AddEmployeeInput" />
+			<xsd:element name="UpdateEmployeeResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteEmployeeRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteEmployeeResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddEmployeeInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="employee" type="tns:employee" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="employees">
+				<xsd:sequence>
+					<xsd:element name="employee" type="tns:employee" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="employee">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_lang" type="xsd:string" />
+					<xsd:element name="last_passwd_gen" type="xsd:string" />
+					<xsd:element name="stats_date_from" type="xsd:string" />
+					<xsd:element name="stats_date_to" type="xsd:string" />
+					<xsd:element name="passwd" type="xsd:string" />
+					<xsd:element name="lastname" type="xsd:string" />
+					<xsd:element name="firstname" type="xsd:string" />
+					<xsd:element name="email" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="id_profil" type="xsd:string" />
+					<xsd:element name="bo_color" type="xsd:string" />
+					<xsd:element name="default_tab" type="xsd:string" />
+					<xsd:element name="bo_theme" type="xsd:string" />
+					<xsd:element name="bo_width" type="xsd:string" />
+					<xsd:element name="bo_show_screencast" type="xsd:string" />					
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetEmployeesRequest">
+		<wsdl:part element="tns:GetEmployeesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetEmployeesResponse">
+		<wsdl:part element="tns:GetEmployeesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetEmployeeByIdRequest">
+		<wsdl:part element="tns:GetEmployeeByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetEmployeeByIdResponse">
+		<wsdl:part element="tns:GetEmployeeByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateEmployeeRequest">
+		<wsdl:part element="tns:CreateEmployeeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateEmployeeResponse">
+		<wsdl:part element="tns:CreateEmployeeResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateEmployeeRequest">
+		<wsdl:part element="tns:UpdateEmployeeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateEmployeeResponse">
+		<wsdl:part element="tns:UpdateEmployeeResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteEmployeeRequest">
+		<wsdl:part element="tns:DeleteEmployeeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteEmployeeResponse">
+		<wsdl:part element="tns:DeleteEmployeeResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Employees">
+	
+	
+		<wsdl:operation name="GetEmployees">
+			<wsdl:input message="tns:GetEmployeesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetEmployeesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEmployeeById">
+			<wsdl:input message="tns:GetEmployeeByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetEmployeeByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateEmployee">
+			<wsdl:input message="tns:CreateEmployeeRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateEmployeeResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateEmployee">
+			<wsdl:input message="tns:UpdateEmployeeRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateEmployeeResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteEmployee">
+			<wsdl:input message="tns:DeleteEmployeeRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteEmployeeResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="EmployeesSOAP" type="tns:Employees">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetEmployees">
+			<soap:operation soapAction="http://www.prestashop.com/employees/GetEmployees" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEmployeeById">
+			<soap:operation soapAction="http://www.prestashop.com/employees/GetEmployeeById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateEmployee">
+			<soap:operation soapAction="http://www.prestashop.com/employees/CreateEmployee" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateEmployee">
+			<soap:operation soapAction="http://www.prestashop.com/employees/UpdateEmployee" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteEmployee">
+			<soap:operation soapAction="http://www.prestashop.com/employees/DeleteEmployee" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Employees">
+		<wsdl:port binding="tns:EmployeesSOAP" name="EmployeesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/employees/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

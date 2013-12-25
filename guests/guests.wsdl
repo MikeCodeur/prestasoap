@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Guests/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Guests/"
+	name="Guests" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Guests/">
+					
+			<xsd:element name="GetguestsRequest" type="tns:GetInput" />
+			<xsd:element name="GetguestsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetguestByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetguestByIdResponse" type="tns:guests" />
+			
+			<xsd:element name="CreateguestRequest" type="tns:AddguestInput" />
+			<xsd:element name="CreateguestResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateguestRequest" type="tns:AddguestInput" />
+			<xsd:element name="UpdateguestResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteguestRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteguestResponse" type="tns:commonReturn" />
+						
+			<xsd:complexType name="AddguestInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="guest" type="tns:guest" />
+				</xsd:all>
+			</xsd:complexType>
+						
+			<xsd:complexType name="guests">
+				<xsd:sequence>
+					<xsd:element name="guest" type="tns:guest" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="guest">
+				<xsd:all>
+					<!-- get From sampleCore-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_customer" type="xsd:string" />
+					<xsd:element name="id_operating_system" type="xsd:string" />
+					<xsd:element name="id_web_browser" type="xsd:string" />
+					<xsd:element name="javascript" type="xsd:string" />
+					<xsd:element name="screen_resolution_x" type="xsd:string" />
+					<xsd:element name="screen_resolution_y" type="xsd:string" />
+					<xsd:element name="screen_color" type="xsd:string" />
+					<xsd:element name="sun_java" type="xsd:string" />
+					<xsd:element name="adobe_flash" type="xsd:string" />
+					<xsd:element name="adobe_director" type="xsd:string" />
+					<xsd:element name="apple_quicktime" type="xsd:string" />
+					<xsd:element name="real_player" type="xsd:string" />
+					<xsd:element name="windows_media" type="xsd:string" />
+					<xsd:element name="accept_language" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetguestsRequest">
+		<wsdl:part element="tns:GetguestsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetguestsResponse">
+		<wsdl:part element="tns:GetguestsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetguestByIdRequest">
+		<wsdl:part element="tns:GetguestByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetguestByIdResponse">
+		<wsdl:part element="tns:GetguestByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateguestRequest">
+		<wsdl:part element="tns:CreateguestRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateguestResponse">
+		<wsdl:part element="tns:CreateguestResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateguestRequest">
+		<wsdl:part element="tns:UpdateguestRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateguestResponse">
+		<wsdl:part element="tns:UpdateguestResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteguestRequest">
+		<wsdl:part element="tns:DeleteguestRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteguestResponse">
+		<wsdl:part element="tns:DeleteguestResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="guests">
+	
+	
+		<wsdl:operation name="Getguests">
+			<wsdl:input message="tns:GetguestsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetguestsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetguestById">
+			<wsdl:input message="tns:GetguestByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetguestByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Createguest">
+			<wsdl:input message="tns:CreateguestRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateguestResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Updateguest">
+			<wsdl:input message="tns:UpdateguestRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateguestResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Deleteguest">
+			<wsdl:input message="tns:DeleteguestRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteguestResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="guestsSOAP" type="tns:guests">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="Getguests">
+			<soap:operation soapAction="http://www.prestashop.com/guests/Getguests" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetguestById">
+			<soap:operation soapAction="http://www.prestashop.com/guests/GetguestById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Createguest">
+			<soap:operation soapAction="http://www.prestashop.com/guests/Createguest" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Updateguest">
+			<soap:operation soapAction="http://www.prestashop.com/guests/Updateguest" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Deleteguest">
+			<soap:operation soapAction="http://www.prestashop.com/guests/Deleteguest" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="guests">
+		<wsdl:port binding="tns:guestsSOAP" name="guestsSOAP">
+			<soap:address
+                location="http://___HOST___/___BASE___/___MODULEDIR___/guests/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Combinations/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Combinations/"
+	name="Combinations" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Combinations/">
+				
+			<xsd:element name="GetCombinationsRequest" type="tns:GetInput" />
+			<xsd:element name="GetCombinationsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetCombinationByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetCombinationByIdResponse" type="tns:combinations" />
+			
+			<xsd:element name="CreateCombinationRequest" type="tns:AddCombinationInput" />
+			<xsd:element name="CreateCombinationResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateCombinationRequest" type="tns:AddCombinationInput" />
+			<xsd:element name="UpdateCombinationResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteCombinationRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteCombinationResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddCombinationInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="combination" type="tns:combination" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="combinations">
+				<xsd:sequence>
+					<xsd:element name="combination" type="tns:combination" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="combination">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_product" type="xsd:string" />
+					<xsd:element name="location" type="xsd:string" />
+					<xsd:element name="ean13" type="xsd:string" />
+					<xsd:element name="upc" type="xsd:string" />
+					<xsd:element name="quantity" type="xsd:string" />					
+					<xsd:element name="reference" type="xsd:string" />
+					<xsd:element name="supplier_reference" type="xsd:string" />
+					<xsd:element name="wholesale_price" type="xsd:string" />
+					<xsd:element name="price" type="xsd:string" />
+					<xsd:element name="ecotax" type="xsd:string" />	
+					<xsd:element name="weight" type="xsd:string" />
+					<xsd:element name="unit_price_impact" type="xsd:string" />
+					<xsd:element name="minimal_quantity" type="xsd:string" />
+					<xsd:element name="default_on" type="xsd:string" />
+					<xsd:element name="available_date" type="xsd:string" />	
+					<xsd:element name="associations" type="tns:associations" />							
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="associations">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<!-- <xsd:element name="products" type="tns:products" />-->
+					<xsd:element name="product_option_values" type="tns:product_option_values"  /> 
+					<xsd:element name="images" type="tns:images"  /> 					
+				</xsd:all>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="product_option_values">
+				<xsd:sequence>
+					<xsd:element name="product_option_value" type="tns:product_option_value" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_option_value">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="images">
+				<xsd:sequence>
+					<xsd:element name="image" type="tns:image" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="image">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>					
+				</xsd:all>
+			</xsd:complexType>						
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetCombinationsRequest">
+		<wsdl:part element="tns:GetCombinationsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCombinationsResponse">
+		<wsdl:part element="tns:GetCombinationsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetCombinationByIdRequest">
+		<wsdl:part element="tns:GetCombinationByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCombinationByIdResponse">
+		<wsdl:part element="tns:GetCombinationByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateCombinationRequest">
+		<wsdl:part element="tns:CreateCombinationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateCombinationResponse">
+		<wsdl:part element="tns:CreateCombinationResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCombinationRequest">
+		<wsdl:part element="tns:UpdateCombinationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCombinationResponse">
+		<wsdl:part element="tns:UpdateCombinationResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCombinationRequest">
+		<wsdl:part element="tns:DeleteCombinationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCombinationResponse">
+		<wsdl:part element="tns:DeleteCombinationResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Combinations">
+	
+	
+		<wsdl:operation name="GetCombinations">
+			<wsdl:input message="tns:GetCombinationsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCombinationsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCombinationById">
+			<wsdl:input message="tns:GetCombinationByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCombinationByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCombination">
+			<wsdl:input message="tns:CreateCombinationRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateCombinationResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCombination">
+			<wsdl:input message="tns:UpdateCombinationRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateCombinationResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCombination">
+			<wsdl:input message="tns:DeleteCombinationRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteCombinationResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="CombinationsSOAP" type="tns:Combinations">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetCombinations">
+			<soap:operation soapAction="http://www.prestashop.com/combinations/GetCombinations" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCombinationById">
+			<soap:operation soapAction="http://www.prestashop.com/combinations/GetCombinationById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCombination">
+			<soap:operation soapAction="http://www.prestashop.com/combinations/CreateCombination" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCombination">
+			<soap:operation soapAction="http://www.prestashop.com/combinations/UpdateCombination" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCombination">
+			<soap:operation soapAction="http://www.prestashop.com/combinations/DeleteCombination" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Combinations">
+		<wsdl:port binding="tns:CombinationsSOAP" name="CombinationsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/combinations/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

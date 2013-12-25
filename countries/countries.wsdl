@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Countries/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Countries/"
+	name="Countries" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Countries/">
+	
+			<xsd:element name="GetCountriesRequest" type="tns:GetInput" />
+			<xsd:element name="GetCountriesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetCountryByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetCountryByIdResponse" type="tns:countries" />
+			
+			<xsd:element name="CreateCountryRequest" type="tns:AddCountryInput" />
+			<xsd:element name="CreateCountryResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateCountryRequest" type="tns:AddCountryInput" />
+			<xsd:element name="UpdateCountryResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteCountryRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteCountryResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddCountryInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="country" type="tns:country" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="countries">
+				<xsd:sequence>
+					<xsd:element name="country" type="tns:country" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="country">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_zone" type="xsd:string" />
+					<xsd:element name="id_currency" type="xsd:string" />
+					<xsd:element name="call_prefix" type="xsd:string" />
+					<xsd:element name="iso_code" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="contains_states" type="xsd:string" />
+					<xsd:element name="need_identification_number" type="xsd:string" />
+					<xsd:element name="need_zip_code" type="xsd:string" />
+					<xsd:element name="zip_code_format" type="xsd:string" />
+					<xsd:element name="display_tax_label" type="xsd:string" />
+					<xsd:element name="name" type="tns:name" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="name">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetCountriesRequest">
+		<wsdl:part element="tns:GetCountriesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCountriesResponse">
+		<wsdl:part element="tns:GetCountriesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetCountryByIdRequest">
+		<wsdl:part element="tns:GetCountryByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCountryByIdResponse">
+		<wsdl:part element="tns:GetCountryByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateCountryRequest">
+		<wsdl:part element="tns:CreateCountryRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateCountryResponse">
+		<wsdl:part element="tns:CreateCountryResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCountryRequest">
+		<wsdl:part element="tns:UpdateCountryRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCountryResponse">
+		<wsdl:part element="tns:UpdateCountryResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCountryRequest">
+		<wsdl:part element="tns:DeleteCountryRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCountryResponse">
+		<wsdl:part element="tns:DeleteCountryResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Countries">
+	
+	
+		<wsdl:operation name="GetCountries">
+			<wsdl:input message="tns:GetCountriesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCountriesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCountryById">
+			<wsdl:input message="tns:GetCountryByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCountryByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCountry">
+			<wsdl:input message="tns:CreateCountryRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateCountryResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCountry">
+			<wsdl:input message="tns:UpdateCountryRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateCountryResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCountry">
+			<wsdl:input message="tns:DeleteCountryRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteCountryResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="CountriesSOAP" type="tns:Countries">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetCountries">
+			<soap:operation soapAction="http://www.prestashop.com/countries/GetCountries" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCountryById">
+			<soap:operation soapAction="http://www.prestashop.com/countries/GetCountryById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCountry">
+			<soap:operation soapAction="http://www.prestashop.com/countries/CreateCountry" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCountry">
+			<soap:operation soapAction="http://www.prestashop.com/countries/UpdateCountry" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCountry">
+			<soap:operation soapAction="http://www.prestashop.com/countries/DeleteCountry" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Countries">
+		<wsdl:port binding="tns:CountriesSOAP" name="CountriesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/countries/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

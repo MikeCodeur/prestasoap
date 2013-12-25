@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Order_histories/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Order_histories/"
+	name="Order_histories" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Order_histories/">
+						
+			<xsd:element name="GetOrder_historiesRequest" type="tns:GetInput" />
+			<xsd:element name="GetOrder_historiesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetOrder_historyByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetOrder_historyByIdResponse" type="tns:order_histories" />
+			
+			<xsd:element name="CreateOrder_historyRequest" type="tns:AddOrder_historyInput" />
+			<xsd:element name="CreateOrder_historyResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateOrder_historyRequest" type="tns:AddOrder_historyInput" />
+			<xsd:element name="UpdateOrder_historyResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteOrder_historyRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteOrder_historyResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddOrder_historyInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="order_history" type="tns:order_history" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="order_histories">
+				<xsd:sequence>
+					<xsd:element name="order_history" type="tns:order_history" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="order_history">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_order_state" type="xsd:string" />
+					<xsd:element name="id_order" type="xsd:string" />
+					<xsd:element name="id_employee" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />				
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetOrder_historiesRequest">
+		<wsdl:part element="tns:GetOrder_historiesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrder_historiesResponse">
+		<wsdl:part element="tns:GetOrder_historiesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetOrder_historyByIdRequest">
+		<wsdl:part element="tns:GetOrder_historyByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrder_historyByIdResponse">
+		<wsdl:part element="tns:GetOrder_historyByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateOrder_historyRequest">
+		<wsdl:part element="tns:CreateOrder_historyRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateOrder_historyResponse">
+		<wsdl:part element="tns:CreateOrder_historyResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateOrder_historyRequest">
+		<wsdl:part element="tns:UpdateOrder_historyRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateOrder_historyResponse">
+		<wsdl:part element="tns:UpdateOrder_historyResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteOrder_historyRequest">
+		<wsdl:part element="tns:DeleteOrder_historyRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteOrder_historyResponse">
+		<wsdl:part element="tns:DeleteOrder_historyResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Order_histories">
+	
+	
+		<wsdl:operation name="GetOrder_histories">
+			<wsdl:input message="tns:GetOrder_historiesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetOrder_historiesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder_historyById">
+			<wsdl:input message="tns:GetOrder_historyByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetOrder_historyByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrder_history">
+			<wsdl:input message="tns:CreateOrder_historyRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateOrder_historyResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateOrder_history">
+			<wsdl:input message="tns:UpdateOrder_historyRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateOrder_historyResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteOrder_history">
+			<wsdl:input message="tns:DeleteOrder_historyRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteOrder_historyResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Order_historiesSOAP" type="tns:Order_histories">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetOrder_histories">
+			<soap:operation soapAction="http://www.prestashop.com/order_histories/GetOrder_histories" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder_historyById">
+			<soap:operation soapAction="http://www.prestashop.com/order_histories/GetOrder_historyById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrder_history">
+			<soap:operation soapAction="http://www.prestashop.com/order_histories/CreateOrder_history" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateOrder_history">
+			<soap:operation soapAction="http://www.prestashop.com/order_histories/UpdateOrder_history" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteOrder_history">
+			<soap:operation soapAction="http://www.prestashop.com/order_histories/DeleteOrder_history" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Order_histories">
+		<wsdl:port binding="tns:Order_historiesSOAP" name="Order_historiesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/order_histories/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

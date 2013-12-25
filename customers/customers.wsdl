@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Customers/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Customers/"
+	name="Customers" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Customers/">
+						
+			<xsd:element name="GetCustomersRequest" type="tns:GetInput" />
+			<xsd:element name="GetCustomersResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetCustomerByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetCustomerByIdResponse" type="tns:customers" />
+			
+			<xsd:element name="CreateCustomerRequest" type="tns:AddCustomerInput" />
+			<xsd:element name="CreateCustomerResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateCustomerRequest" type="tns:AddCustomerInput" />
+			<xsd:element name="UpdateCustomerResponse" type="tns:commonReturn" />
+			
+
+			<xsd:complexType name="AddCustomerInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="customer" type="tns:customer" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			
+			<xsd:complexType name="customers">
+				<xsd:sequence>
+					<xsd:element name="customer" type="tns:customer" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="customer">
+				<xsd:all>
+					<!-- get From customerCore-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_shop" type="xsd:string" />
+					<xsd:element name="id_shop_group" type="xsd:string" />
+					<xsd:element name="secure_key" type="xsd:string" />
+					<xsd:element name="note" type="xsd:string" />
+					<xsd:element name="id_gender" type="xsd:string" />
+					<xsd:element name="id_default_group" type="xsd:string" />
+					<xsd:element name="lastname" type="xsd:string" />
+					<xsd:element name="firstname" type="xsd:string" />
+					<xsd:element name="birthday" type="xsd:string" />
+					<xsd:element name="email" type="xsd:string" />
+					<xsd:element name="newsletter" type="xsd:string" />
+					<xsd:element name="ip_registration_newsletter" type="xsd:string" />
+					<xsd:element name="newsletter_date_add" type="xsd:string" />
+					<xsd:element name="optin" type="xsd:string" />
+					<xsd:element name="website" type="xsd:string" />
+					<xsd:element name="company" type="xsd:string" />
+					<xsd:element name="siret" type="xsd:string" />
+					<xsd:element name="ape" type="xsd:string" />
+					<xsd:element name="outstanding_allow_amount" type="xsd:string" />
+					<xsd:element name="show_public_prices" type="xsd:string" />
+					<xsd:element name="id_risk" type="xsd:string" />
+					<xsd:element name="max_payment_days" type="xsd:string" />
+					<xsd:element name="passwd" type="xsd:string" />
+					<xsd:element name="last_passwd_gen" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="is_guest" type="xsd:string" />
+					<xsd:element name="deleted" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+					<xsd:element name="years" type="xsd:string" />
+					<xsd:element name="days" type="xsd:string" />
+					<xsd:element name="months" type="xsd:string" />
+					<xsd:element name="geoloc_id_country" type="xsd:string" />
+					<xsd:element name="geoloc_id_state" type="xsd:string" />
+					<xsd:element name="geoloc_postcode" type="xsd:string" />
+					<xsd:element name="logged" type="xsd:string" />
+					<xsd:element name="id_guest" type="xsd:string" />
+					<xsd:element name="groupBox" type="xsd:string" />
+					<xsd:element name="associations" type="xsd:string" />
+					
+					
+				</xsd:all>
+			</xsd:complexType>
+
+						<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetCustomersRequest">
+		<wsdl:part element="tns:GetCustomersRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCustomersResponse">
+		<wsdl:part element="tns:GetCustomersResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetCustomerByIdRequest">
+		<wsdl:part element="tns:GetCustomerByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCustomerByIdResponse">
+		<wsdl:part element="tns:GetCustomerByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateCustomerRequest">
+		<wsdl:part element="tns:CreateCustomerRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateCustomerResponse">
+		<wsdl:part element="tns:CreateCustomerResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCustomerRequest">
+		<wsdl:part element="tns:UpdateCustomerRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCustomerResponse">
+		<wsdl:part element="tns:UpdateCustomerResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Customers">
+	
+	
+		<wsdl:operation name="GetCustomers">
+			<wsdl:input message="tns:GetCustomersRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCustomersResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCustomerById">
+			<wsdl:input message="tns:GetCustomerByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCustomerByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCustomer">
+			<wsdl:input message="tns:CreateCustomerRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateCustomerResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCustomer">
+			<wsdl:input message="tns:UpdateCustomerRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateCustomerResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="CustomersSOAP" type="tns:Customers">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetCustomers">
+			<soap:operation soapAction="http://www.prestashop.com/customers/GetCustomers" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCustomerById">
+			<soap:operation soapAction="http://www.prestashop.com/customers/GetCustomerById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCustomer">
+			<soap:operation soapAction="http://www.prestashop.com/customers/CreateCustomer" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCustomer">
+			<soap:operation soapAction="http://www.prestashop.com/customers/UpdateCustomer" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Customers">
+		<wsdl:port binding="tns:CustomersSOAP" name="CustomersSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/customers/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

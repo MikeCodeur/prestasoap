@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Order_carriers/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Order_carriers/"
+	name="Order_carriers" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Order_carriers/">
+			
+			<xsd:element name="GetOrder_carriersRequest" type="tns:GetInput" />
+			<xsd:element name="GetOrder_carriersResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetOrder_carrierByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetOrder_carrierByIdResponse" type="tns:order_carriers" />
+			
+			<xsd:element name="CreateOrder_carrierRequest" type="tns:AddOrder_carrierInput" />
+			<xsd:element name="CreateOrder_carrierResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateOrder_carrierRequest" type="tns:AddOrder_carrierInput" />
+			<xsd:element name="UpdateOrder_carrierResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteOrder_carrierRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteOrder_carrierResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddOrder_carrierInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="order_carrier" type="tns:order_carrier" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="order_carriers">
+				<xsd:sequence>
+					<xsd:element name="order_carrier" type="tns:order_carrier" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="order_carrier">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_order" type="xsd:string" />
+					<xsd:element name="id_carrier" type="xsd:string" />
+					<xsd:element name="id_order_invoice" type="xsd:string" />
+					<xsd:element name="weight" type="xsd:string" />
+					<xsd:element name="shipping_cost_tax_excl" type="xsd:string" />
+					<xsd:element name="shipping_cost_tax_incl" type="xsd:string" />
+					<xsd:element name="tracking_number" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />				
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetOrder_carriersRequest">
+		<wsdl:part element="tns:GetOrder_carriersRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrder_carriersResponse">
+		<wsdl:part element="tns:GetOrder_carriersResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetOrder_carrierByIdRequest">
+		<wsdl:part element="tns:GetOrder_carrierByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrder_carrierByIdResponse">
+		<wsdl:part element="tns:GetOrder_carrierByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateOrder_carrierRequest">
+		<wsdl:part element="tns:CreateOrder_carrierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateOrder_carrierResponse">
+		<wsdl:part element="tns:CreateOrder_carrierResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateOrder_carrierRequest">
+		<wsdl:part element="tns:UpdateOrder_carrierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateOrder_carrierResponse">
+		<wsdl:part element="tns:UpdateOrder_carrierResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteOrder_carrierRequest">
+		<wsdl:part element="tns:DeleteOrder_carrierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteOrder_carrierResponse">
+		<wsdl:part element="tns:DeleteOrder_carrierResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Order_carriers">
+	
+	
+		<wsdl:operation name="GetOrder_carriers">
+			<wsdl:input message="tns:GetOrder_carriersRequest"></wsdl:input>
+			<wsdl:output message="tns:GetOrder_carriersResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder_carrierById">
+			<wsdl:input message="tns:GetOrder_carrierByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetOrder_carrierByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrder_carrier">
+			<wsdl:input message="tns:CreateOrder_carrierRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateOrder_carrierResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateOrder_carrier">
+			<wsdl:input message="tns:UpdateOrder_carrierRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateOrder_carrierResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteOrder_carrier">
+			<wsdl:input message="tns:DeleteOrder_carrierRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteOrder_carrierResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Order_carriersSOAP" type="tns:Order_carriers">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetOrder_carriers">
+			<soap:operation soapAction="http://www.prestashop.com/order_carriers/GetOrder_carriers" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder_carrierById">
+			<soap:operation soapAction="http://www.prestashop.com/order_carriers/GetOrder_carrierById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrder_carrier">
+			<soap:operation soapAction="http://www.prestashop.com/order_carriers/CreateOrder_carrier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateOrder_carrier">
+			<soap:operation soapAction="http://www.prestashop.com/order_carriers/UpdateOrder_carrier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteOrder_carrier">
+			<soap:operation soapAction="http://www.prestashop.com/order_carriers/DeleteOrder_carrier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Order_carriers">
+		<wsdl:port binding="tns:Order_carriersSOAP" name="Order_carriersSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/order_carriers/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

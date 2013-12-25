@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Suppliers/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Suppliers/"
+	name="Suppliers" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Suppliers/">
+					
+			<xsd:element name="GetSuppliersRequest" type="tns:GetInput" />
+			<xsd:element name="GetSuppliersResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetSupplierByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetSupplierByIdResponse" type="tns:suppliers" />
+			
+			<xsd:element name="CreateSupplierRequest" type="tns:AddSupplierInput" />
+			<xsd:element name="CreateSupplierResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateSupplierRequest" type="tns:AddSupplierInput" />
+			<xsd:element name="UpdateSupplierResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteSupplierRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteSupplierResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddSupplierInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="supplier" type="tns:supplier" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="suppliers">
+				<xsd:sequence>
+					<xsd:element name="supplier" type="tns:supplier" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="supplier">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="link_rewrite" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+					<xsd:element name="description" type="tns:description" />
+					<xsd:element name="meta_title" type="tns:meta_title" />
+					<xsd:element name="meta_description" type="tns:meta_description" />
+					<xsd:element name="meta_keywords" type="tns:meta_keywords" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="description">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="meta_title">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="meta_description">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="meta_keywords">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetSuppliersRequest">
+		<wsdl:part element="tns:GetSuppliersRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetSuppliersResponse">
+		<wsdl:part element="tns:GetSuppliersResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetSupplierByIdRequest">
+		<wsdl:part element="tns:GetSupplierByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetSupplierByIdResponse">
+		<wsdl:part element="tns:GetSupplierByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateSupplierRequest">
+		<wsdl:part element="tns:CreateSupplierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateSupplierResponse">
+		<wsdl:part element="tns:CreateSupplierResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateSupplierRequest">
+		<wsdl:part element="tns:UpdateSupplierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateSupplierResponse">
+		<wsdl:part element="tns:UpdateSupplierResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteSupplierRequest">
+		<wsdl:part element="tns:DeleteSupplierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteSupplierResponse">
+		<wsdl:part element="tns:DeleteSupplierResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Suppliers">
+	
+	
+		<wsdl:operation name="GetSuppliers">
+			<wsdl:input message="tns:GetSuppliersRequest"></wsdl:input>
+			<wsdl:output message="tns:GetSuppliersResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupplierById">
+			<wsdl:input message="tns:GetSupplierByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetSupplierByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateSupplier">
+			<wsdl:input message="tns:CreateSupplierRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateSupplierResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSupplier">
+			<wsdl:input message="tns:UpdateSupplierRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateSupplierResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteSupplier">
+			<wsdl:input message="tns:DeleteSupplierRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteSupplierResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="SuppliersSOAP" type="tns:Suppliers">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetSuppliers">
+			<soap:operation soapAction="http://www.prestashop.com/suppliers/GetSuppliers" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupplierById">
+			<soap:operation soapAction="http://www.prestashop.com/suppliers/GetSupplierById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateSupplier">
+			<soap:operation soapAction="http://www.prestashop.com/suppliers/CreateSupplier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSupplier">
+			<soap:operation soapAction="http://www.prestashop.com/suppliers/UpdateSupplier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteSupplier">
+			<soap:operation soapAction="http://www.prestashop.com/suppliers/DeleteSupplier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Suppliers">
+		<wsdl:port binding="tns:SuppliersSOAP" name="SuppliersSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/suppliers/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Image_types/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Image_types/"
+	name="Image_types" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Image_types/">
+						
+			<xsd:element name="GetImage_typesRequest" type="tns:GetInput" />
+			<xsd:element name="GetImage_typesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetImage_typeByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetImage_typeByIdResponse" type="tns:image_types" />
+			
+			<xsd:element name="CreateImage_typeRequest" type="tns:AddImage_typeInput" />
+			<xsd:element name="CreateImage_typeResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateImage_typeRequest" type="tns:AddImage_typeInput" />
+			<xsd:element name="UpdateImage_typeResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteImage_typeRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteImage_typeResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddImage_typeInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="image_type" type="tns:image_type" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="image_types">
+				<xsd:sequence>
+					<xsd:element name="image_type" type="tns:image_type" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="image_type">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="width" type="xsd:string" />
+					<xsd:element name="height" type="xsd:string" />
+					<xsd:element name="categories" type="xsd:string" />
+					<xsd:element name="products" type="xsd:string" />
+					<xsd:element name="manufacturers" type="xsd:string" />
+					<xsd:element name="suppliers" type="xsd:string" />
+					<xsd:element name="scenes" type="xsd:string" />
+					<xsd:element name="stores" type="xsd:string" />				
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetImage_typesRequest">
+		<wsdl:part element="tns:GetImage_typesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetImage_typesResponse">
+		<wsdl:part element="tns:GetImage_typesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetImage_typeByIdRequest">
+		<wsdl:part element="tns:GetImage_typeByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetImage_typeByIdResponse">
+		<wsdl:part element="tns:GetImage_typeByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateImage_typeRequest">
+		<wsdl:part element="tns:CreateImage_typeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateImage_typeResponse">
+		<wsdl:part element="tns:CreateImage_typeResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateImage_typeRequest">
+		<wsdl:part element="tns:UpdateImage_typeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateImage_typeResponse">
+		<wsdl:part element="tns:UpdateImage_typeResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteImage_typeRequest">
+		<wsdl:part element="tns:DeleteImage_typeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteImage_typeResponse">
+		<wsdl:part element="tns:DeleteImage_typeResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Image_types">
+	
+	
+		<wsdl:operation name="GetImage_types">
+			<wsdl:input message="tns:GetImage_typesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetImage_typesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetImage_typeById">
+			<wsdl:input message="tns:GetImage_typeByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetImage_typeByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateImage_type">
+			<wsdl:input message="tns:CreateImage_typeRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateImage_typeResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateImage_type">
+			<wsdl:input message="tns:UpdateImage_typeRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateImage_typeResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteImage_type">
+			<wsdl:input message="tns:DeleteImage_typeRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteImage_typeResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Image_typesSOAP" type="tns:Image_types">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetImage_types">
+			<soap:operation soapAction="http://www.prestashop.com/image_types/GetImage_types" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetImage_typeById">
+			<soap:operation soapAction="http://www.prestashop.com/image_types/GetImage_typeById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateImage_type">
+			<soap:operation soapAction="http://www.prestashop.com/image_types/CreateImage_type" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateImage_type">
+			<soap:operation soapAction="http://www.prestashop.com/image_types/UpdateImage_type" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteImage_type">
+			<soap:operation soapAction="http://www.prestashop.com/image_types/DeleteImage_type" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Image_types">
+		<wsdl:port binding="tns:Image_typesSOAP" name="Image_typesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/image_types/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

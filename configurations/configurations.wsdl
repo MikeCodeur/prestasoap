@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Configurations/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Configurations/"
+	name="Configurations" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Configurations/">
+					
+			<xsd:element name="GetConfigurationsRequest" type="tns:GetInput" />
+			<xsd:element name="GetConfigurationsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetConfigurationByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetConfigurationByIdResponse" type="tns:configurations" />
+			
+			<xsd:element name="CreateConfigurationRequest" type="tns:AddConfigurationInput" />
+			<xsd:element name="CreateConfigurationResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateConfigurationRequest" type="tns:AddConfigurationInput" />
+			<xsd:element name="UpdateConfigurationResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteConfigurationRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteConfigurationResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddConfigurationInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="configuration" type="tns:configuration" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="configurations">
+				<xsd:sequence>
+					<xsd:element name="configuration" type="tns:configuration" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="configuration">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="value" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="id_shop_group" type="xsd:string" />
+					<xsd:element name="id_shop" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />			
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetConfigurationsRequest">
+		<wsdl:part element="tns:GetConfigurationsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetConfigurationsResponse">
+		<wsdl:part element="tns:GetConfigurationsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetConfigurationByIdRequest">
+		<wsdl:part element="tns:GetConfigurationByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetConfigurationByIdResponse">
+		<wsdl:part element="tns:GetConfigurationByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateConfigurationRequest">
+		<wsdl:part element="tns:CreateConfigurationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateConfigurationResponse">
+		<wsdl:part element="tns:CreateConfigurationResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateConfigurationRequest">
+		<wsdl:part element="tns:UpdateConfigurationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateConfigurationResponse">
+		<wsdl:part element="tns:UpdateConfigurationResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteConfigurationRequest">
+		<wsdl:part element="tns:DeleteConfigurationRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteConfigurationResponse">
+		<wsdl:part element="tns:DeleteConfigurationResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Configurations">
+	
+	
+		<wsdl:operation name="GetConfigurations">
+			<wsdl:input message="tns:GetConfigurationsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetConfigurationsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetConfigurationById">
+			<wsdl:input message="tns:GetConfigurationByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetConfigurationByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateConfiguration">
+			<wsdl:input message="tns:CreateConfigurationRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateConfigurationResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateConfiguration">
+			<wsdl:input message="tns:UpdateConfigurationRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateConfigurationResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteConfiguration">
+			<wsdl:input message="tns:DeleteConfigurationRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteConfigurationResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="ConfigurationsSOAP" type="tns:Configurations">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetConfigurations">
+			<soap:operation soapAction="http://www.prestashop.com/configurations/GetConfigurations" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetConfigurationById">
+			<soap:operation soapAction="http://www.prestashop.com/configurations/GetConfigurationById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateConfiguration">
+			<soap:operation soapAction="http://www.prestashop.com/configurations/CreateConfiguration" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateConfiguration">
+			<soap:operation soapAction="http://www.prestashop.com/configurations/UpdateConfiguration" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteConfiguration">
+			<soap:operation soapAction="http://www.prestashop.com/configurations/DeleteConfiguration" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Configurations">
+		<wsdl:port binding="tns:ConfigurationsSOAP" name="ConfigurationsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/configurations/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

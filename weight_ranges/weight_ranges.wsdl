@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Weight_ranges/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Weight_ranges/"
+	name="Weight_ranges" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Weight_ranges/">
+					
+			<xsd:element name="GetWeight_rangesRequest" type="tns:GetInput" />
+			<xsd:element name="GetWeight_rangesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetWeight_rangeByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetWeight_rangeByIdResponse" type="tns:Weight_ranges" />
+			
+			<xsd:element name="CreateWeight_rangeRequest" type="tns:AddWeight_rangeInput" />
+			<xsd:element name="CreateWeight_rangeResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateWeight_rangeRequest" type="tns:AddWeight_rangeInput" />
+			<xsd:element name="UpdateWeight_rangeResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteWeight_rangeRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteWeight_rangeResponse" type="tns:commonReturn" />
+			
+			
+			<xsd:complexType name="GetWeight_rangesInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="AddWeight_rangeInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="weight_range" type="tns:weight_range" />
+				</xsd:all>
+			</xsd:complexType>
+						
+			<xsd:complexType name="Weight_ranges">
+				<xsd:sequence>
+					<xsd:element name="weight_range" type="tns:weight_range" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="weight_range">
+				<xsd:all>
+					<!-- get From sampleCore-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_carrier" type="xsd:string" />
+					<xsd:element name="delimiter1" type="xsd:string" />
+					<xsd:element name="delimiter2" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetWeight_rangesRequest">
+		<wsdl:part element="tns:GetWeight_rangesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetWeight_rangesResponse">
+		<wsdl:part element="tns:GetWeight_rangesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetWeight_rangeByIdRequest">
+		<wsdl:part element="tns:GetWeight_rangeByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetWeight_rangeByIdResponse">
+		<wsdl:part element="tns:GetWeight_rangeByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateWeight_rangeRequest">
+		<wsdl:part element="tns:CreateWeight_rangeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateWeight_rangeResponse">
+		<wsdl:part element="tns:CreateWeight_rangeResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateWeight_rangeRequest">
+		<wsdl:part element="tns:UpdateWeight_rangeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateWeight_rangeResponse">
+		<wsdl:part element="tns:UpdateWeight_rangeResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteWeight_rangeRequest">
+		<wsdl:part element="tns:DeleteWeight_rangeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteWeight_rangeResponse">
+		<wsdl:part element="tns:DeleteWeight_rangeResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Weight_ranges">
+	
+	
+		<wsdl:operation name="GetWeight_ranges">
+			<wsdl:input message="tns:GetWeight_rangesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetWeight_rangesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetWeight_rangeById">
+			<wsdl:input message="tns:GetWeight_rangeByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetWeight_rangeByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateWeight_range">
+			<wsdl:input message="tns:CreateWeight_rangeRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateWeight_rangeResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateWeight_range">
+			<wsdl:input message="tns:UpdateWeight_rangeRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateWeight_rangeResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteWeight_range">
+			<wsdl:input message="tns:DeleteWeight_rangeRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteWeight_rangeResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Weight_rangesSOAP" type="tns:Weight_ranges">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetWeight_ranges">
+			<soap:operation soapAction="http://www.prestashop.com/Weight_ranges/GetWeight_ranges" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetWeight_rangeById">
+			<soap:operation soapAction="http://www.prestashop.com/Weight_ranges/GetWeight_rangeById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateWeight_range">
+			<soap:operation soapAction="http://www.prestashop.com/Weight_ranges/CreateWeight_range" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateWeight_range">
+			<soap:operation soapAction="http://www.prestashop.com/Weight_ranges/UpdateWeight_range" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteWeight_range">
+			<soap:operation soapAction="http://www.prestashop.com/Weight_ranges/DeleteWeight_range" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Weight_ranges">
+		<wsdl:port binding="tns:Weight_rangesSOAP" name="Weight_rangesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/weight_ranges/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

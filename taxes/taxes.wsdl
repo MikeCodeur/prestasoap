@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Taxes/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Taxes/"
+	name="Taxes" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Taxes/">
+				
+			<xsd:element name="GettaxesRequest" type="tns:GetInput" />
+			<xsd:element name="GettaxesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GettaxByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GettaxByIdResponse" type="tns:taxes" />
+			
+			<xsd:element name="CreatetaxRequest" type="tns:AddtaxInput" />
+			<xsd:element name="CreatetaxResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdatetaxRequest" type="tns:AddtaxInput" />
+			<xsd:element name="UpdatetaxResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeletetaxRequest" type="tns:DelInput" />
+			<xsd:element name="DeletetaxResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddtaxInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="tax" type="tns:tax" />
+				</xsd:all>
+			</xsd:complexType>
+						
+			<xsd:complexType name="taxes">
+				<xsd:sequence>
+					<xsd:element name="tax" type="tns:tax" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="tax">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="rate" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="deleted" type="xsd:string" />
+					<xsd:element name="name" type="tns:name" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="name">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GettaxesRequest">
+		<wsdl:part element="tns:GettaxesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GettaxesResponse">
+		<wsdl:part element="tns:GettaxesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GettaxByIdRequest">
+		<wsdl:part element="tns:GettaxByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GettaxByIdResponse">
+		<wsdl:part element="tns:GettaxByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreatetaxRequest">
+		<wsdl:part element="tns:CreatetaxRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreatetaxResponse">
+		<wsdl:part element="tns:CreatetaxResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdatetaxRequest">
+		<wsdl:part element="tns:UpdatetaxRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdatetaxResponse">
+		<wsdl:part element="tns:UpdatetaxResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeletetaxRequest">
+		<wsdl:part element="tns:DeletetaxRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeletetaxResponse">
+		<wsdl:part element="tns:DeletetaxResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="taxes">
+	
+	
+		<wsdl:operation name="Gettaxes">
+			<wsdl:input message="tns:GettaxesRequest"></wsdl:input>
+			<wsdl:output message="tns:GettaxesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GettaxById">
+			<wsdl:input message="tns:GettaxByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GettaxByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Createtax">
+			<wsdl:input message="tns:CreatetaxRequest"></wsdl:input>
+			<wsdl:output message="tns:CreatetaxResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Updatetax">
+			<wsdl:input message="tns:UpdatetaxRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdatetaxResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Deletetax">
+			<wsdl:input message="tns:DeletetaxRequest"></wsdl:input>
+			<wsdl:output message="tns:DeletetaxResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="taxesSOAP" type="tns:taxes">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="Gettaxes">
+			<soap:operation soapAction="http://www.prestashop.com/taxes/Gettaxes" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GettaxById">
+			<soap:operation soapAction="http://www.prestashop.com/taxes/GettaxById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Createtax">
+			<soap:operation soapAction="http://www.prestashop.com/taxes/Createtax" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Updatetax">
+			<soap:operation soapAction="http://www.prestashop.com/taxes/Updatetax" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Deletetax">
+			<soap:operation soapAction="http://www.prestashop.com/taxes/Deletetax" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="taxes">
+		<wsdl:port binding="tns:taxesSOAP" name="taxesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/taxes/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

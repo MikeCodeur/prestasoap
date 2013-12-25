@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/samples/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Samples"
+	targetNamespace="http://www.prestashop.com/samples/" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/samples/">
+			
+			<xsd:element name="GetSamplesRequest" type="tns:GetSamplesInput" />
+			<xsd:element name="GetSamplesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetSampleByIdRequest" type="tns:GetSamplesInput" />
+			<xsd:element name="GetSampleByIdResponse" type="tns:samples" />
+			
+			<xsd:element name="CreateSampleRequest" type="tns:AddSampleInput" />
+			<xsd:element name="CreateSampleResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateSampleRequest" type="tns:AddSampleInput" />
+			<xsd:element name="UpdateSampleResponse" type="tns:commonReturn" />
+			
+			
+			<xsd:complexType name="GetSamplesInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="AddSampleInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="sample" type="tns:sample" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="login" type="xsd:string" />
+					<xsd:element name="password" type="xsd:string" />
+					<xsd:element name="key" type="xsd:string" />
+					<xsd:element name="isEncrypted" type="xsd:string" />
+					<xsd:element name="lang" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="samples">
+				<xsd:sequence>
+					<xsd:element name="sample" type="tns:sample" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="sample">
+				<xsd:all>
+					<!-- get From sampleCore-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="iso_code" type="xsd:string" />
+					<xsd:element name="sample_code" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="is_rtl" type="xsd:string" />
+					<xsd:element name="date_format_lite" type="xsd:string" />
+					<xsd:element name="date_format_full" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+	
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetSamplesRequest">
+		<wsdl:part element="tns:GetSamplesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetSamplesResponse">
+		<wsdl:part element="tns:GetSamplesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetSampleByIdRequest">
+		<wsdl:part element="tns:GetSampleByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetSampleByIdResponse">
+		<wsdl:part element="tns:GetSampleByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateSampleRequest">
+		<wsdl:part element="tns:CreateSampleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateSampleResponse">
+		<wsdl:part element="tns:CreateSampleResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateSampleRequest">
+		<wsdl:part element="tns:UpdateSampleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateSampleResponse">
+		<wsdl:part element="tns:UpdateSampleResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Samples">
+	
+	
+		<wsdl:operation name="GetSamples">
+			<wsdl:input message="tns:GetSamplesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetSamplesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSampleById">
+			<wsdl:input message="tns:GetSampleByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetSampleByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateSample">
+			<wsdl:input message="tns:CreateSampleRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateSampleResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSample">
+			<wsdl:input message="tns:UpdateSampleRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateSampleResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="SamplesSOAP" type="tns:Samples">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetSamples">
+			<soap:operation soapAction="http://www.prestashop.com/samples/GetSamples" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSampleById">
+			<soap:operation soapAction="http://www.prestashop.com/samples/GetSampleById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateSample">
+			<soap:operation soapAction="http://www.prestashop.com/samples/CreateSample" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSample">
+			<soap:operation soapAction="http://www.prestashop.com/samples/UpdateSample" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Samples">
+		<wsdl:port binding="tns:SamplesSOAP" name="SamplesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/sample/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

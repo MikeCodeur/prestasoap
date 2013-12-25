@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/prestasoap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/prestasoap/"
+	name="Zones" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/prestasoap/">
+			<xsd:include schemaLocation="../commonsPrestasoap.xsd"></xsd:include>
+			
+			<xsd:element name="GetZonesRequest" type="tns:GetInput" />
+			<xsd:element name="GetZonesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetZoneByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetZoneByIdResponse" type="tns:zones" />
+			
+			<xsd:element name="CreateZoneRequest" type="tns:AddZoneInput" />
+			<xsd:element name="CreateZoneResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateZoneRequest" type="tns:AddZoneInput" />
+			<xsd:element name="UpdateZoneResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteZoneRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteZoneResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddZoneInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="zone" type="tns:zone" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="zones">
+				<xsd:sequence>
+					<xsd:element name="zone" type="tns:zone" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="zone">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+	
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetZonesRequest">
+		<wsdl:part element="tns:GetZonesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetZonesResponse">
+		<wsdl:part element="tns:GetZonesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetZoneByIdRequest">
+		<wsdl:part element="tns:GetZoneByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetZoneByIdResponse">
+		<wsdl:part element="tns:GetZoneByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateZoneRequest">
+		<wsdl:part element="tns:CreateZoneRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateZoneResponse">
+		<wsdl:part element="tns:CreateZoneResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateZoneRequest">
+		<wsdl:part element="tns:UpdateZoneRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateZoneResponse">
+		<wsdl:part element="tns:UpdateZoneResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteZoneRequest">
+		<wsdl:part element="tns:DeleteZoneRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteZoneResponse">
+		<wsdl:part element="tns:DeleteZoneResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Zones">
+	
+	
+		<wsdl:operation name="GetZones">
+			<wsdl:input message="tns:GetZonesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetZonesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetZoneById">
+			<wsdl:input message="tns:GetZoneByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetZoneByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateZone">
+			<wsdl:input message="tns:CreateZoneRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateZoneResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateZone">
+			<wsdl:input message="tns:UpdateZoneRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateZoneResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteZone">
+			<wsdl:input message="tns:DeleteZoneRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteZoneResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="ZonesSOAP" type="tns:Zones">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetZones">
+			<soap:operation soapAction="http://www.prestashop.com/zones/GetZones" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetZoneById">
+			<soap:operation soapAction="http://www.prestashop.com/zones/GetZoneById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateZone">
+			<soap:operation soapAction="http://www.prestashop.com/zones/CreateZone" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateZone">
+			<soap:operation soapAction="http://www.prestashop.com/zones/UpdateZone" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteZone">
+			<soap:operation soapAction="http://www.prestashop.com/zones/DeleteZone" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Zones">
+		<wsdl:port binding="tns:ZonesSOAP" name="ZonesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/zones/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

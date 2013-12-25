@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Search/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Search/"
+	name="Search" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Search/">
+			
+			<xsd:element name="SearchRequest" type="tns:SearchInput" />
+			<xsd:element name="SearchResponse" type="tns:SearchReturn" />
+			
+			
+			<xsd:complexType name="SearchInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="Search" type="tns:Search" />
+				</xsd:all>
+			</xsd:complexType>
+						
+			<xsd:complexType name="Search">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="query" type="xsd:string" />
+					<xsd:element name="language" type="xsd:string" />
+				
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="SearchReturn">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="products" type="tns:products" />
+					<xsd:element name="categories" type="tns:categories"  />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="products" >
+				<xsd:sequence>
+					<xsd:element name="product" type="tns:product" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product" >
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="value" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="categories">
+				<xsd:sequence>
+					<xsd:element name="category" type="tns:category" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="category">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="value" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="SearchRequest">
+		<wsdl:part element="tns:SearchRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="SearchResponse">
+		<wsdl:part element="tns:SearchResponse" name="parameters" />
+	</wsdl:message>
+	
+	
+	
+	
+	<wsdl:portType name="Search">
+	
+		<wsdl:operation name="Search">
+			<wsdl:input message="tns:SearchRequest"></wsdl:input>
+			<wsdl:output message="tns:SearchResponse"></wsdl:output>
+		</wsdl:operation>
+
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="SearchSOAP" type="tns:Search">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="Search">
+			<soap:operation soapAction="http://www.prestashop.com/Searchs/Search" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:binding>
+	<wsdl:service name="Search">
+		<wsdl:port binding="tns:SearchSOAP" name="SearchSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/search/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

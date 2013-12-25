@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Stock_movement_reasons/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Stock_movement_reasons/"
+	name="Stock_movement_reasons" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Stock_movement_reasons/">
+						
+			<xsd:element name="GetStock_movement_reasonsRequest" type="tns:GetInput" />
+			<xsd:element name="GetStock_movement_reasonsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetStock_movement_reasonByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetStock_movement_reasonByIdResponse" type="tns:stock_movement_reasons" />
+			
+			<xsd:element name="CreateStock_movement_reasonRequest" type="tns:AddStock_movement_reasonInput" />
+			<xsd:element name="CreateStock_movement_reasonResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateStock_movement_reasonRequest" type="tns:AddStock_movement_reasonInput" />
+			<xsd:element name="UpdateStock_movement_reasonResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteStock_movement_reasonRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteStock_movement_reasonResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddStock_movement_reasonInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="stock_movement_reason" type="tns:stock_movement_reason" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="stock_movement_reasons">
+				<xsd:sequence>
+					<xsd:element name="stock_movement_reason" type="tns:stock_movement_reason" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="stock_movement_reason">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="sign" type="xsd:string" />
+					<xsd:element name="deleted" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+					<xsd:element name="name" type="tns:name" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="name">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetStock_movement_reasonsRequest">
+		<wsdl:part element="tns:GetStock_movement_reasonsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetStock_movement_reasonsResponse">
+		<wsdl:part element="tns:GetStock_movement_reasonsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetStock_movement_reasonByIdRequest">
+		<wsdl:part element="tns:GetStock_movement_reasonByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetStock_movement_reasonByIdResponse">
+		<wsdl:part element="tns:GetStock_movement_reasonByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateStock_movement_reasonRequest">
+		<wsdl:part element="tns:CreateStock_movement_reasonRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateStock_movement_reasonResponse">
+		<wsdl:part element="tns:CreateStock_movement_reasonResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateStock_movement_reasonRequest">
+		<wsdl:part element="tns:UpdateStock_movement_reasonRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateStock_movement_reasonResponse">
+		<wsdl:part element="tns:UpdateStock_movement_reasonResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteStock_movement_reasonRequest">
+		<wsdl:part element="tns:DeleteStock_movement_reasonRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteStock_movement_reasonResponse">
+		<wsdl:part element="tns:DeleteStock_movement_reasonResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Stock_movement_reasons">
+	
+	
+		<wsdl:operation name="GetStock_movement_reasons">
+			<wsdl:input message="tns:GetStock_movement_reasonsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetStock_movement_reasonsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetStock_movement_reasonById">
+			<wsdl:input message="tns:GetStock_movement_reasonByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetStock_movement_reasonByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateStock_movement_reason">
+			<wsdl:input message="tns:CreateStock_movement_reasonRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateStock_movement_reasonResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateStock_movement_reason">
+			<wsdl:input message="tns:UpdateStock_movement_reasonRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateStock_movement_reasonResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteStock_movement_reason">
+			<wsdl:input message="tns:DeleteStock_movement_reasonRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteStock_movement_reasonResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Stock_movement_reasonsSOAP" type="tns:Stock_movement_reasons">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetStock_movement_reasons">
+			<soap:operation soapAction="http://www.prestashop.com/stock_movement_reasons/GetStock_movement_reasons" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetStock_movement_reasonById">
+			<soap:operation soapAction="http://www.prestashop.com/stock_movement_reasons/GetStock_movement_reasonById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateStock_movement_reason">
+			<soap:operation soapAction="http://www.prestashop.com/stock_movement_reasons/CreateStock_movement_reason" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateStock_movement_reason">
+			<soap:operation soapAction="http://www.prestashop.com/stock_movement_reasons/UpdateStock_movement_reason" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteStock_movement_reason">
+			<soap:operation soapAction="http://www.prestashop.com/stock_movement_reasons/DeleteStock_movement_reason" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Stock_movement_reasons">
+		<wsdl:port binding="tns:Stock_movement_reasonsSOAP" name="Stock_movement_reasonsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/stock_movement_reasons/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Order_payments/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Order_payments/"
+	name="Order_payments" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Order_payments/">
+			
+			<xsd:element name="GetOrder_paymentsRequest" type="tns:GetInput" />
+			<xsd:element name="GetOrder_paymentsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetOrder_paymentByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetOrder_paymentByIdResponse" type="tns:order_payments" />
+			
+			<xsd:element name="CreateOrder_paymentRequest" type="tns:AddOrder_paymentInput" />
+			<xsd:element name="CreateOrder_paymentResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateOrder_paymentRequest" type="tns:AddOrder_paymentInput" />
+			<xsd:element name="UpdateOrder_paymentResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteOrder_paymentRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteOrder_paymentResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddOrder_paymentInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="order_payment" type="tns:order_payment" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="order_payments">
+				<xsd:sequence>
+					<xsd:element name="order_payment" type="tns:order_payment" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="order_payment">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="order_reference" type="xsd:string" />
+					<xsd:element name="id_currency" type="xsd:string" />
+					<xsd:element name="amount" type="xsd:string" />
+					<xsd:element name="payment_method" type="xsd:string" />
+					<xsd:element name="conversion_rate" type="xsd:string" />
+					<xsd:element name="transaction_id" type="xsd:string" />
+					<xsd:element name="card_number" type="xsd:string" />
+					<xsd:element name="card_brand" type="xsd:string" />
+					<xsd:element name="card_expiration" type="xsd:string" />
+					<xsd:element name="card_holder" type="xsd:string" />					
+					<xsd:element name="date_add" type="xsd:string" />							
+				</xsd:all>
+			</xsd:complexType>
+
+						<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetOrder_paymentsRequest">
+		<wsdl:part element="tns:GetOrder_paymentsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrder_paymentsResponse">
+		<wsdl:part element="tns:GetOrder_paymentsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetOrder_paymentByIdRequest">
+		<wsdl:part element="tns:GetOrder_paymentByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrder_paymentByIdResponse">
+		<wsdl:part element="tns:GetOrder_paymentByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateOrder_paymentRequest">
+		<wsdl:part element="tns:CreateOrder_paymentRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateOrder_paymentResponse">
+		<wsdl:part element="tns:CreateOrder_paymentResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateOrder_paymentRequest">
+		<wsdl:part element="tns:UpdateOrder_paymentRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateOrder_paymentResponse">
+		<wsdl:part element="tns:UpdateOrder_paymentResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteOrder_paymentRequest">
+		<wsdl:part element="tns:DeleteOrder_paymentRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteOrder_paymentResponse">
+		<wsdl:part element="tns:DeleteOrder_paymentResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Order_payments">
+	
+	
+		<wsdl:operation name="GetOrder_payments">
+			<wsdl:input message="tns:GetOrder_paymentsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetOrder_paymentsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder_paymentById">
+			<wsdl:input message="tns:GetOrder_paymentByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetOrder_paymentByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrder_payment">
+			<wsdl:input message="tns:CreateOrder_paymentRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateOrder_paymentResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateOrder_payment">
+			<wsdl:input message="tns:UpdateOrder_paymentRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateOrder_paymentResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteOrder_payment">
+			<wsdl:input message="tns:DeleteOrder_paymentRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteOrder_paymentResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Order_paymentsSOAP" type="tns:Order_payments">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetOrder_payments">
+			<soap:operation soapAction="http://www.prestashop.com/order_payments/GetOrder_payments" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder_paymentById">
+			<soap:operation soapAction="http://www.prestashop.com/order_payments/GetOrder_paymentById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrder_payment">
+			<soap:operation soapAction="http://www.prestashop.com/order_payments/CreateOrder_payment" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateOrder_payment">
+			<soap:operation soapAction="http://www.prestashop.com/order_payments/UpdateOrder_payment" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteOrder_payment">
+			<soap:operation soapAction="http://www.prestashop.com/order_payments/DeleteOrder_payment" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Order_payments">
+		<wsdl:port binding="tns:Order_paymentsSOAP" name="Order_paymentsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/order_payments/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

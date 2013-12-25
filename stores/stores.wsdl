@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Stores/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Stores/"
+	name="Stores" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Stores/">
+					
+			<xsd:element name="GetStoresRequest" type="tns:GetInput" />
+			<xsd:element name="GetStoresResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetStoreByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetStoreByIdResponse" type="tns:stores" />
+			
+			<xsd:element name="CreateStoreRequest" type="tns:AddStoreInput" />
+			<xsd:element name="CreateStoreResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateStoreRequest" type="tns:AddStoreInput" />
+			<xsd:element name="UpdateStoreResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteStoreRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteStoreResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddStoreInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="store" type="tns:store" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="stores">
+				<xsd:sequence>
+					<xsd:element name="store" type="tns:store" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="store">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_country" type="xsd:string" />
+					<xsd:element name="id_state" type="xsd:string" />
+					<xsd:element name="hours" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="address1" type="xsd:string" />
+					<xsd:element name="address2" type="xsd:string" />
+					<xsd:element name="postcode" type="xsd:string" />
+					<xsd:element name="city" type="xsd:string" />
+					<xsd:element name="latitude" type="xsd:string" />
+					<xsd:element name="longitude" type="xsd:string" />
+					<xsd:element name="phone" type="xsd:string" />
+					<xsd:element name="fax" type="xsd:string" />
+					<xsd:element name="note" type="xsd:string" />
+					<xsd:element name="email" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetStoresRequest">
+		<wsdl:part element="tns:GetStoresRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetStoresResponse">
+		<wsdl:part element="tns:GetStoresResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetStoreByIdRequest">
+		<wsdl:part element="tns:GetStoreByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetStoreByIdResponse">
+		<wsdl:part element="tns:GetStoreByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateStoreRequest">
+		<wsdl:part element="tns:CreateStoreRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateStoreResponse">
+		<wsdl:part element="tns:CreateStoreResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateStoreRequest">
+		<wsdl:part element="tns:UpdateStoreRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateStoreResponse">
+		<wsdl:part element="tns:UpdateStoreResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteStoreRequest">
+		<wsdl:part element="tns:DeleteStoreRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteStoreResponse">
+		<wsdl:part element="tns:DeleteStoreResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Stores">
+	
+	
+		<wsdl:operation name="GetStores">
+			<wsdl:input message="tns:GetStoresRequest"></wsdl:input>
+			<wsdl:output message="tns:GetStoresResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetStoreById">
+			<wsdl:input message="tns:GetStoreByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetStoreByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateStore">
+			<wsdl:input message="tns:CreateStoreRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateStoreResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateStore">
+			<wsdl:input message="tns:UpdateStoreRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateStoreResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteStore">
+			<wsdl:input message="tns:DeleteStoreRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteStoreResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="StoresSOAP" type="tns:Stores">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetStores">
+			<soap:operation soapAction="http://www.prestashop.com/stores/GetStores" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetStoreById">
+			<soap:operation soapAction="http://www.prestashop.com/stores/GetStoreById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateStore">
+			<soap:operation soapAction="http://www.prestashop.com/stores/CreateStore" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateStore">
+			<soap:operation soapAction="http://www.prestashop.com/stores/UpdateStore" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteStore">
+			<soap:operation soapAction="http://www.prestashop.com/stores/DeleteStore" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Stores">
+		<wsdl:port binding="tns:StoresSOAP" name="StoresSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/stores/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/prestasoap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/prestasoap/"
+	name="Order_cart_rules" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/prestasoap/">
+			<xsd:include schemaLocation="../commonsPrestasoap.xsd"></xsd:include>
+			
+			<xsd:element name="GetOrder_cart_rulesRequest" type="tns:GetInput" />
+			<xsd:element name="GetOrder_cart_rulesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetOrder_cart_ruleByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetOrder_cart_ruleByIdResponse" type="tns:order_cart_rules" />
+			
+			<xsd:element name="CreateOrder_cart_ruleRequest" type="tns:AddOrder_cart_ruleInput" />
+			<xsd:element name="CreateOrder_cart_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateOrder_cart_ruleRequest" type="tns:AddOrder_cart_ruleInput" />
+			<xsd:element name="UpdateOrder_cart_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteOrder_cart_ruleRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteOrder_cart_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddOrder_cart_ruleInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="order_cart_rule" type="tns:order_cart_rule" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="order_cart_rules">
+				<xsd:sequence>
+					<xsd:element name="order_cart_rule" type="tns:order_cart_rule" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="order_cart_rule">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_order/" type="xsd:string" />
+					<xsd:element name="id_cart_rule" type="xsd:string" />
+					<xsd:element name="id_order_invoice" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="value" type="xsd:string" />
+					<xsd:element name="value_tax_excl" type="xsd:string" />				
+				</xsd:all>
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetOrder_cart_rulesRequest">
+		<wsdl:part element="tns:GetOrder_cart_rulesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrder_cart_rulesResponse">
+		<wsdl:part element="tns:GetOrder_cart_rulesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetOrder_cart_ruleByIdRequest">
+		<wsdl:part element="tns:GetOrder_cart_ruleByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrder_cart_ruleByIdResponse">
+		<wsdl:part element="tns:GetOrder_cart_ruleByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateOrder_cart_ruleRequest">
+		<wsdl:part element="tns:CreateOrder_cart_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateOrder_cart_ruleResponse">
+		<wsdl:part element="tns:CreateOrder_cart_ruleResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateOrder_cart_ruleRequest">
+		<wsdl:part element="tns:UpdateOrder_cart_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateOrder_cart_ruleResponse">
+		<wsdl:part element="tns:UpdateOrder_cart_ruleResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteOrder_cart_ruleRequest">
+		<wsdl:part element="tns:DeleteOrder_cart_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteOrder_cart_ruleResponse">
+		<wsdl:part element="tns:DeleteOrder_cart_ruleResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Order_cart_rules">
+	
+	
+		<wsdl:operation name="GetOrder_cart_rules">
+			<wsdl:input message="tns:GetOrder_cart_rulesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetOrder_cart_rulesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder_cart_ruleById">
+			<wsdl:input message="tns:GetOrder_cart_ruleByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetOrder_cart_ruleByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrder_cart_rule">
+			<wsdl:input message="tns:CreateOrder_cart_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateOrder_cart_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateOrder_cart_rule">
+			<wsdl:input message="tns:UpdateOrder_cart_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateOrder_cart_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteOrder_cart_rule">
+			<wsdl:input message="tns:DeleteOrder_cart_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteOrder_cart_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Order_cart_rulesSOAP" type="tns:Order_cart_rules">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetOrder_cart_rules">
+			<soap:operation soapAction="http://www.prestashop.com/order_cart_rules/GetOrder_cart_rules" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrder_cart_ruleById">
+			<soap:operation soapAction="http://www.prestashop.com/order_cart_rules/GetOrder_cart_ruleById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateOrder_cart_rule">
+			<soap:operation soapAction="http://www.prestashop.com/order_cart_rules/CreateOrder_cart_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateOrder_cart_rule">
+			<soap:operation soapAction="http://www.prestashop.com/order_cart_rules/UpdateOrder_cart_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteOrder_cart_rule">
+			<soap:operation soapAction="http://www.prestashop.com/order_cart_rules/DeleteOrder_cart_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Order_discounts">
+		<wsdl:port binding="tns:Order_cart_rulesSOAP" name="Order_cart_rulesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/stock_movements/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

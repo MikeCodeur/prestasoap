@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Categories/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Categories/"
+	name="Categories" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Categories/">
+		
+			<xsd:element name="GetCategoriesRequest" type="tns:GetInput" />
+			<xsd:element name="GetCategoriesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetCategoryByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetCategoryByIdResponse" type="tns:categories" />
+			
+			<xsd:element name="CreateCategoryRequest" type="tns:AddCategoryInput" />
+			<xsd:element name="CreateCategoryResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateCategoryRequest" type="tns:AddCategoryInput" />
+			<xsd:element name="UpdateCategoryResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteCategoryRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteCategoryResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddCategoryInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="category" type="tns:category" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="categories">
+				<xsd:sequence>
+					<xsd:element name="category" type="tns:category" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="category">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_parent" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="id_shop_default" type="xsd:string" />
+					<xsd:element name="is_root_category" type="xsd:string" />
+					<xsd:element name="position" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+					<xsd:element name="name" type="tns:name" />
+					<xsd:element name="link_rewrite" type="tns:link_rewrite" />
+					<xsd:element name="description" type="tns:description" />
+					<xsd:element name="meta_title" type="tns:meta_title" />
+					<xsd:element name="meta_description" type="tns:meta_description" />
+					<xsd:element name="meta_keywords" type="tns:meta_keywords" />
+					<xsd:element name="associations" type="tns:associations" />				
+		
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="name">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="link_rewrite">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="description">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="meta_title">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="meta_description">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>		
+
+			<xsd:complexType name="meta_keywords">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>					
+			
+			<xsd:complexType name="associations">
+				<xsd:all>
+					<xsd:element name="categories" type="tns:categoriesType"  /> 
+					<xsd:element name="products" type="tns:products"  /> 					
+				</xsd:all>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="categoriesType">
+				<xsd:sequence>
+					<xsd:element name="category" type="tns:categoryId" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="categoryId">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="products">
+				<xsd:sequence>
+					<xsd:element name="product" type="tns:product" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="product">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>					
+				</xsd:all>
+			</xsd:complexType>	
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>			
+	
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetCategoriesRequest">
+		<wsdl:part element="tns:GetCategoriesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCategoriesResponse">
+		<wsdl:part element="tns:GetCategoriesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetCategoryByIdRequest">
+		<wsdl:part element="tns:GetCategoryByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCategoryByIdResponse">
+		<wsdl:part element="tns:GetCategoryByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateCategoryRequest">
+		<wsdl:part element="tns:CreateCategoryRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateCategoryResponse">
+		<wsdl:part element="tns:CreateCategoryResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCategoryRequest">
+		<wsdl:part element="tns:UpdateCategoryRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCategoryResponse">
+		<wsdl:part element="tns:UpdateCategoryResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCategoryRequest">
+		<wsdl:part element="tns:DeleteCategoryRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCategoryResponse">
+		<wsdl:part element="tns:DeleteCategoryResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Categories">
+	
+	
+		<wsdl:operation name="GetCategories">
+			<wsdl:input message="tns:GetCategoriesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCategoriesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCategoryById">
+			<wsdl:input message="tns:GetCategoryByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCategoryByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCategory">
+			<wsdl:input message="tns:CreateCategoryRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateCategoryResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCategory">
+			<wsdl:input message="tns:UpdateCategoryRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateCategoryResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCategory">
+			<wsdl:input message="tns:DeleteCategoryRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteCategoryResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="CategoriesSOAP" type="tns:Categories">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetCategories">
+			<soap:operation soapAction="http://www.prestashop.com/categories/GetCategories" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCategoryById">
+			<soap:operation soapAction="http://www.prestashop.com/categories/GetCategoryById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCategory">
+			<soap:operation soapAction="http://www.prestashop.com/categories/CreateCategory" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCategory">
+			<soap:operation soapAction="http://www.prestashop.com/categories/UpdateCategory" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCategory">
+			<soap:operation soapAction="http://www.prestashop.com/categories/DeleteCategory" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Categories">
+		<wsdl:port binding="tns:CategoriesSOAP" name="CategoriesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/categories/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

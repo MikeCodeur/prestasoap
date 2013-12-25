@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Tax_rules/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Tax_rules/"
+	name="Tax_rules" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Tax_rules/">
+			
+			<xsd:element name="GetTax_rulesRequest" type="tns:GetInput" />
+			<xsd:element name="GetTax_rulesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetTax_ruleByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetTax_ruleByIdResponse" type="tns:tax_rules" />
+			
+			<xsd:element name="CreateTax_ruleRequest" type="tns:AddTax_ruleInput" />
+			<xsd:element name="CreateTax_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateTax_ruleRequest" type="tns:AddTax_ruleInput" />
+			<xsd:element name="UpdateTax_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteTax_ruleRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteTax_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddTax_ruleInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="tax_rule" type="tns:tax_rule" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="tax_rules">
+				<xsd:sequence>
+					<xsd:element name="tax_rule" type="tns:tax_rule" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="tax_rule">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_tax_rules_group" type="xsd:string" />
+					<xsd:element name="id_state" type="xsd:string" />
+					<xsd:element name="id_country" type="xsd:string" />
+					<xsd:element name="zipcode_from" type="xsd:string" />
+					<xsd:element name="zipcode_to" type="xsd:string" />
+					<xsd:element name="id_tax" type="xsd:string" />
+					<xsd:element name="behavior" type="xsd:string" />
+					<xsd:element name="description" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetTax_rulesRequest">
+		<wsdl:part element="tns:GetTax_rulesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetTax_rulesResponse">
+		<wsdl:part element="tns:GetTax_rulesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetTax_ruleByIdRequest">
+		<wsdl:part element="tns:GetTax_ruleByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetTax_ruleByIdResponse">
+		<wsdl:part element="tns:GetTax_ruleByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateTax_ruleRequest">
+		<wsdl:part element="tns:CreateTax_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateTax_ruleResponse">
+		<wsdl:part element="tns:CreateTax_ruleResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateTax_ruleRequest">
+		<wsdl:part element="tns:UpdateTax_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateTax_ruleResponse">
+		<wsdl:part element="tns:UpdateTax_ruleResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteTax_ruleRequest">
+		<wsdl:part element="tns:DeleteTax_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteTax_ruleResponse">
+		<wsdl:part element="tns:DeleteTax_ruleResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Tax_rules">
+	
+	
+		<wsdl:operation name="GetTax_rules">
+			<wsdl:input message="tns:GetTax_rulesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetTax_rulesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetTax_ruleById">
+			<wsdl:input message="tns:GetTax_ruleByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetTax_ruleByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateTax_rule">
+			<wsdl:input message="tns:CreateTax_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateTax_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateTax_rule">
+			<wsdl:input message="tns:UpdateTax_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateTax_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteTax_rule">
+			<wsdl:input message="tns:DeleteTax_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteTax_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Tax_rulesSOAP" type="tns:Tax_rules">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetTax_rules">
+			<soap:operation soapAction="http://www.prestashop.com/tax_rules/GetTax_rules" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetTax_ruleById">
+			<soap:operation soapAction="http://www.prestashop.com/tax_rules/GetTax_ruleById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateTax_rule">
+			<soap:operation soapAction="http://www.prestashop.com/tax_rules/CreateTax_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateTax_rule">
+			<soap:operation soapAction="http://www.prestashop.com/tax_rules/UpdateTax_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteTax_rule">
+			<soap:operation soapAction="http://www.prestashop.com/tax_rules/DeleteTax_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Tax_rules">
+		<wsdl:port binding="tns:Tax_rulesSOAP" name="Tax_rulesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/tax_rules/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

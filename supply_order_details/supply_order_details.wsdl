@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Supply_order_details/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Supply_order_details/"
+	name="Supply_order_details" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Supply_order_details/">
+				
+			<xsd:element name="GetSupply_order_detailsRequest" type="tns:GetInput" />
+			<xsd:element name="GetSupply_order_detailsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetSupply_order_detailByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetSupply_order_detailByIdResponse" type="tns:supply_order_details" />
+			
+			<xsd:element name="CreateSupply_order_detailRequest" type="tns:AddSupply_order_detailInput" />
+			<xsd:element name="CreateSupply_order_detailResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateSupply_order_detailRequest" type="tns:AddSupply_order_detailInput" />
+			<xsd:element name="UpdateSupply_order_detailResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteSupply_order_detailRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteSupply_order_detailResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddSupply_order_detailInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="supply_order_detail" type="tns:supply_order_detail" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="supply_order_details">
+				<xsd:sequence>
+					<xsd:element name="supply_order_detail" type="tns:supply_order_detail" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="supply_order_detail">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_supply_order" type="xsd:string" />
+					<xsd:element name="id_product" type="xsd:string" />
+					<xsd:element name="id_product_attribute" type="xsd:string" />
+					<xsd:element name="reference" type="xsd:string" />
+					<xsd:element name="supplier_reference" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="ean13" type="xsd:string" />
+					<xsd:element name="upc" type="xsd:string" />
+					<xsd:element name="exchange_rate" type="xsd:string" />
+					<xsd:element name="unit_price_te" type="xsd:string" />
+					<xsd:element name="quantity_expected" type="xsd:string" />
+					<xsd:element name="quantity_received" type="xsd:string" />
+					<xsd:element name="price_te" type="xsd:string" />
+					<xsd:element name="discount_rate" type="xsd:string" />
+					<xsd:element name="discount_value_te" type="xsd:string" />
+					<xsd:element name="price_with_discount_te" type="xsd:string" />
+					<xsd:element name="tax_rate" type="xsd:string" />
+					<xsd:element name="tax_value" type="xsd:string" />
+					<xsd:element name="price_ti" type="xsd:string" />
+					<xsd:element name="tax_value_with_order_discount" type="xsd:string" />
+					<xsd:element name="price_with_order_discount_te" type="xsd:string" />
+					
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetSupply_order_detailsRequest">
+		<wsdl:part element="tns:GetSupply_order_detailsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetSupply_order_detailsResponse">
+		<wsdl:part element="tns:GetSupply_order_detailsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetSupply_order_detailByIdRequest">
+		<wsdl:part element="tns:GetSupply_order_detailByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetSupply_order_detailByIdResponse">
+		<wsdl:part element="tns:GetSupply_order_detailByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateSupply_order_detailRequest">
+		<wsdl:part element="tns:CreateSupply_order_detailRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateSupply_order_detailResponse">
+		<wsdl:part element="tns:CreateSupply_order_detailResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateSupply_order_detailRequest">
+		<wsdl:part element="tns:UpdateSupply_order_detailRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateSupply_order_detailResponse">
+		<wsdl:part element="tns:UpdateSupply_order_detailResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteSupply_order_detailRequest">
+		<wsdl:part element="tns:DeleteSupply_order_detailRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteSupply_order_detailResponse">
+		<wsdl:part element="tns:DeleteSupply_order_detailResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Supply_order_details">
+	
+	
+		<wsdl:operation name="GetSupply_order_details">
+			<wsdl:input message="tns:GetSupply_order_detailsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetSupply_order_detailsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupply_order_detailById">
+			<wsdl:input message="tns:GetSupply_order_detailByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetSupply_order_detailByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateSupply_order_detail">
+			<wsdl:input message="tns:CreateSupply_order_detailRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateSupply_order_detailResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSupply_order_detail">
+			<wsdl:input message="tns:UpdateSupply_order_detailRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateSupply_order_detailResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteSupply_order_detail">
+			<wsdl:input message="tns:DeleteSupply_order_detailRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteSupply_order_detailResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Supply_order_detailsSOAP" type="tns:Supply_order_details">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetSupply_order_details">
+			<soap:operation soapAction="http://www.prestashop.com/supply_order_details/GetSupply_order_details" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupply_order_detailById">
+			<soap:operation soapAction="http://www.prestashop.com/supply_order_details/GetSupply_order_detailById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateSupply_order_detail">
+			<soap:operation soapAction="http://www.prestashop.com/supply_order_details/CreateSupply_order_detail" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSupply_order_detail">
+			<soap:operation soapAction="http://www.prestashop.com/supply_order_details/UpdateSupply_order_detail" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteSupply_order_detail">
+			<soap:operation soapAction="http://www.prestashop.com/supply_order_details/DeleteSupply_order_detail" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Supply_order_details">
+		<wsdl:port binding="tns:Supply_order_detailsSOAP" name="Supply_order_detailsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/supply_order_details/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

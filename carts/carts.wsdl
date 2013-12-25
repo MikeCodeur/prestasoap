@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Carts/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Carts/"
+	name="Carts" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Carts/">
+		
+			
+			<xsd:element name="GetCartsRequest" type="tns:GetInput" />
+			<xsd:element name="GetCartsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetCartByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetCartByIdResponse" type="tns:carts" />
+			
+			<xsd:element name="CreateCartRequest" type="tns:AddCartInput" />
+			<xsd:element name="CreateCartResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateCartRequest" type="tns:AddCartInput" />
+			<xsd:element name="UpdateCartResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteCartRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteCartResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddCartInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="cart" type="tns:cart" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="carts">
+				<xsd:sequence>
+					<xsd:element name="cart" type="tns:cart" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="cart">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_address_delivery" type="xsd:string" />
+					<xsd:element name="id_address_invoice" type="xsd:string" />
+					<xsd:element name="id_currency" type="xsd:string" />
+					<xsd:element name="id_customer" type="xsd:string" />
+					<xsd:element name="id_guest" type="xsd:string" />
+					<xsd:element name="id_lang" type="xsd:string" />
+					<xsd:element name="id_shop_group" type="xsd:string" />
+					<xsd:element name="id_shop" type="xsd:string" />
+					<xsd:element name="id_carrier" type="xsd:string" />
+					<xsd:element name="recyclable" type="xsd:string" />
+					<xsd:element name="gift" type="xsd:string" />
+					<xsd:element name="gift_message" type="xsd:string" />
+					<xsd:element name="delivery_option" type="xsd:string" />
+					<xsd:element name="secure_key" type="xsd:string" />
+					<xsd:element name="allow_seperated_package" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+					<xsd:element name="associations" type="tns:associations" />				
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="associations">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<!-- <xsd:element name="products" type="tns:products" />-->
+					<xsd:element name="cart_rows" type="tns:cart_rows"  /> 
+				</xsd:all>
+			</xsd:complexType>			
+			
+			<xsd:complexType name="cart_rows">
+				<xsd:sequence>
+					<xsd:element name="cart_row" type="tns:cart_row" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="cart_row">
+				<xsd:all>
+					<xsd:element name="id_product" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="id_product_attribute" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="quantity" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>	
+
+
+			<xsd:complexType name="loginInfo">
+					<xsd:all>
+						<xsd:element name="key" type="xsd:string" />
+					</xsd:all>
+				</xsd:complexType>
+				
+				<xsd:complexType name="GetInput">
+					<xsd:all>
+						<xsd:element name="loginInfo" type="tns:loginInfo" />
+						<xsd:element name="id" type="xsd:string" />
+						<xsd:element name="limit_start" type="xsd:string" />
+						<xsd:element name="limit_end" type="xsd:string" />
+					</xsd:all>
+				</xsd:complexType>
+				
+				<xsd:complexType name="DelInput">
+					<xsd:all>
+						<xsd:element name="loginInfo" type="tns:loginInfo" />
+						<xsd:element name="id" type="xsd:string" />
+					</xsd:all>
+				</xsd:complexType>
+				
+				<xsd:complexType name="commonReturn">
+					<xsd:all>
+						<xsd:element name="returnCode" type="xsd:string" />
+						<xsd:element name="message" type="xsd:string" />
+						<xsd:element name="returnData" type="xsd:string" />
+					</xsd:all>
+				</xsd:complexType>
+				
+				<xsd:complexType name="commonXlink">
+					<xsd:all>
+						<xsd:element name="id" type="xsd:string" />
+						<xsd:element name="xlink" type="xsd:string" />
+						<xsd:element name="type" type="xsd:string" />
+					</xsd:all>
+				</xsd:complexType>
+				
+				<xsd:complexType name="commonXlinks">
+					<xsd:sequence>
+						<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+				
+				<xsd:complexType name="langStruct">
+					<xsd:sequence>
+						<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+					
+				<xsd:complexType name="language">
+					<xsd:attribute name="id" type="xsd:string"  />
+					<xsd:attribute name="xlink" type="xsd:string" />
+					<xsd:attribute name="value" type="xsd:string" />
+				</xsd:complexType>			
+	
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetCartsRequest">
+		<wsdl:part element="tns:GetCartsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCartsResponse">
+		<wsdl:part element="tns:GetCartsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetCartByIdRequest">
+		<wsdl:part element="tns:GetCartByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCartByIdResponse">
+		<wsdl:part element="tns:GetCartByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateCartRequest">
+		<wsdl:part element="tns:CreateCartRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateCartResponse">
+		<wsdl:part element="tns:CreateCartResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCartRequest">
+		<wsdl:part element="tns:UpdateCartRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCartResponse">
+		<wsdl:part element="tns:UpdateCartResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCartRequest">
+		<wsdl:part element="tns:DeleteCartRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCartResponse">
+		<wsdl:part element="tns:DeleteCartResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Carts">
+	
+	
+		<wsdl:operation name="GetCarts">
+			<wsdl:input message="tns:GetCartsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCartsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCartById">
+			<wsdl:input message="tns:GetCartByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCartByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCart">
+			<wsdl:input message="tns:CreateCartRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateCartResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCart">
+			<wsdl:input message="tns:UpdateCartRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateCartResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCart">
+			<wsdl:input message="tns:DeleteCartRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteCartResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="CartsSOAP" type="tns:Carts">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetCarts">
+			<soap:operation soapAction="http://www.prestashop.com/carts/GetCarts" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCartById">
+			<soap:operation soapAction="http://www.prestashop.com/carts/GetCartById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCart">
+			<soap:operation soapAction="http://www.prestashop.com/carts/CreateCart" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCart">
+			<soap:operation soapAction="http://www.prestashop.com/carts/UpdateCart" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCart">
+			<soap:operation soapAction="http://www.prestashop.com/carts/DeleteCart" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Carts">
+		<wsdl:port binding="tns:CartsSOAP" name="CartsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/carts/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Content_management_system/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Content_management_system/"
+	name="Content_management_system" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Content_management_system/">
+						
+			<xsd:element name="GetContent_management_systemRequest" type="tns:GetInput" />
+			<xsd:element name="GetContent_management_systemResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetContentByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetContentByIdResponse" type="tns:content_management_system" />
+			
+			<xsd:element name="CreateContentRequest" type="tns:AddContentInput" />
+			<xsd:element name="CreateContentResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateContentRequest" type="tns:AddContentInput" />
+			<xsd:element name="UpdateContentResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteContentRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteContentResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddContentInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="content" type="tns:content" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="content_management_system">
+				<xsd:sequence>
+					<xsd:element name="content" type="tns:content" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="content">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_cms_category" type="xsd:string" />
+					<xsd:element name="position" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="meta_description" type="tns:meta_description" />
+					<xsd:element name="meta_keywords" type="tns:meta_keywords" />
+					<xsd:element name="meta_title" type="tns:meta_title" />
+					<xsd:element name="link_rewrite" type="tns:link_rewrite" />
+					<xsd:element name="content" type="tns:contentLang" />				
+				</xsd:all>
+			</xsd:complexType>
+	
+			<xsd:complexType name="meta_description">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="meta_keywords">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="meta_title">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="link_rewrite">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="contentLang">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>			
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetContent_management_systemRequest">
+		<wsdl:part element="tns:GetContent_management_systemRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetContent_management_systemResponse">
+		<wsdl:part element="tns:GetContent_management_systemResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetContentByIdRequest">
+		<wsdl:part element="tns:GetContentByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetContentByIdResponse">
+		<wsdl:part element="tns:GetContentByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateContentRequest">
+		<wsdl:part element="tns:CreateContentRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateContentResponse">
+		<wsdl:part element="tns:CreateContentResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateContentRequest">
+		<wsdl:part element="tns:UpdateContentRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateContentResponse">
+		<wsdl:part element="tns:UpdateContentResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteContentRequest">
+		<wsdl:part element="tns:DeleteContentRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteContentResponse">
+		<wsdl:part element="tns:DeleteContentResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Content_management_system">
+	
+	
+		<wsdl:operation name="GetContent_management_system">
+			<wsdl:input message="tns:GetContent_management_systemRequest"></wsdl:input>
+			<wsdl:output message="tns:GetContent_management_systemResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetContentById">
+			<wsdl:input message="tns:GetContentByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetContentByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateContent">
+			<wsdl:input message="tns:CreateContentRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateContentResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateContent">
+			<wsdl:input message="tns:UpdateContentRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateContentResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteContent">
+			<wsdl:input message="tns:DeleteContentRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteContentResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Content_management_systemSOAP" type="tns:Content_management_system">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetContent_management_system">
+			<soap:operation soapAction="http://www.prestashop.com/content_management_system/GetContent_management_system" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetContentById">
+			<soap:operation soapAction="http://www.prestashop.com/content_management_system/GetContentById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateContent">
+			<soap:operation soapAction="http://www.prestashop.com/content_management_system/CreateContent" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateContent">
+			<soap:operation soapAction="http://www.prestashop.com/content_management_system/UpdateContent" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteContent">
+			<soap:operation soapAction="http://www.prestashop.com/content_management_system/DeleteContent" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Content_management_system">
+		<wsdl:port binding="tns:Content_management_systemSOAP" name="Content_management_systemSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/content_management_system/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Products/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Products/"
+	name="Products" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Products/">
+			
+			<xsd:element name="GetProductsRequest" type="tns:GetInput" />
+			<xsd:element name="GetProductsResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetProductByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetProductByIdResponse" type="tns:products" />
+			
+			<xsd:element name="CreateProductRequest" type="tns:AddProductInput" />
+			<xsd:element name="CreateProductResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateProductRequest" type="tns:AddProductInput" />
+			<xsd:element name="UpdateProductResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteProductRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteProductResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddProductInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="product" type="tns:product" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="products">
+				<xsd:sequence>
+					<xsd:element name="product" type="tns:product" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_manufacturer" type="xsd:string" />
+					<xsd:element name="id_supplier" type="xsd:string" />
+					<xsd:element name="id_category_default" type="xsd:string" />
+					<xsd:element name="new" type="xsd:string" />
+					<xsd:element name="cache_default_attribute" type="xsd:string" />
+					<xsd:element name="id_default_image" type="xsd:string" />
+					<xsd:element name="id_default_combination" type="xsd:string" />
+					<xsd:element name="id_tax_rules_group" type="xsd:string" />
+					<xsd:element name="position_in_category" type="xsd:string" />
+					<xsd:element name="manufacturer_name" type="xsd:string" />
+					<xsd:element name="quantity" type="xsd:string" />
+					<xsd:element name="id_shop_default" type="xsd:string" />
+					<xsd:element name="reference" type="xsd:string" />
+					<xsd:element name="supplier_reference" type="xsd:string" />
+					<xsd:element name="location" type="xsd:string" />
+					<xsd:element name="width" type="xsd:string" />
+					<xsd:element name="height" type="xsd:string" />
+					<xsd:element name="depth" type="xsd:string" />
+					<xsd:element name="weight" type="xsd:string" />
+					<xsd:element name="quantity_discount" type="xsd:string" />
+					<xsd:element name="ean13" type="xsd:string" />
+					<xsd:element name="upc" type="xsd:string" />
+					<xsd:element name="cache_is_pack" type="xsd:string" />
+					<xsd:element name="cache_has_attachments" type="xsd:string" />
+					<xsd:element name="is_virtual" type="xsd:string" />
+					<xsd:element name="on_sale" type="xsd:string" />
+					<xsd:element name="online_only" type="xsd:string" />
+					<xsd:element name="ecotax" type="xsd:string" />
+					<xsd:element name="minimal_quantity" type="xsd:string" />
+					<xsd:element name="price" type="xsd:string" />
+					<xsd:element name="wholesale_price" type="xsd:string" />
+					<xsd:element name="unity" type="xsd:string" />
+					<xsd:element name="unit_price_ratio" type="xsd:string" />
+					<xsd:element name="additional_shipping_cost" type="xsd:string" />
+					<xsd:element name="customizable" type="xsd:string" />
+					<xsd:element name="text_fields" type="xsd:string" />
+					<xsd:element name="uploadable_files" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="available_for_order" type="xsd:string" />
+					<xsd:element name="available_date" type="xsd:string" />
+					<xsd:element name="condition" type="xsd:string" />
+					<xsd:element name="show_price" type="xsd:string" />
+					<xsd:element name="indexed" type="xsd:string" />
+					<xsd:element name="visibility" type="xsd:string" />
+					<xsd:element name="advanced_stock_management" type="xsd:string" />
+					<xsd:element name="date_add" type="xsd:string" />
+					<xsd:element name="date_upd" type="xsd:string" />
+					<xsd:element name="meta_description" type="tns:langStruct" />
+					<xsd:element name="meta_keywords" type="tns:langStruct" />
+					<xsd:element name="meta_title" type="tns:langStruct" />
+					<xsd:element name="link_rewrite" type="tns:langStruct" />
+					<xsd:element name="name" type="tns:langStruct" />
+					<xsd:element name="description" type="tns:langStruct" />
+					<xsd:element name="description_short" type="tns:langStruct" />
+					<xsd:element name="available_now" type="tns:langStruct" />
+					<xsd:element name="available_later" type="tns:langStruct" />
+					<xsd:element name="associations" type="tns:associations" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			
+			<xsd:complexType name="associations">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<!-- <xsd:element name="products" type="tns:products" />-->
+					<xsd:element name="categories" type="tns:categories"  /> 
+					<xsd:element name="images" type="tns:images"  /> 
+					<xsd:element name="combinations" type="tns:combinations"  /> 
+					<xsd:element name="product_option_values" type="tns:product_option_values"  /> 
+					<xsd:element name="product_features" type="tns:product_features"  /> 
+					<xsd:element name="tags" type="tns:tags"  /> 
+				</xsd:all>
+			</xsd:complexType>
+			
+			<!-- <xsd:complexType name="products" >
+				<xsd:sequence>
+					<xsd:element name="product" type="tns:product2" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product2" >
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="value" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType> -->
+			
+			<xsd:complexType name="categories">
+				<xsd:sequence>
+					<xsd:element name="category" type="tns:category" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="category">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="value" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="images">
+				<xsd:sequence>
+					<xsd:element name="image" type="tns:imageStruct" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="image">
+				<xsd:all>
+					<xsd:element name="image" type="tns:imageStruct" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="imageStruct">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="combinations">
+				<xsd:sequence>
+					<xsd:element name="combinations" type="tns:combinationsStruc" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="combinationsStruc">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_option_values">
+				<xsd:sequence>
+					<xsd:element name="product_option_values" type="tns:product_option_valueStruc" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_option_valueStruc">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_features">
+				<xsd:sequence>
+					<xsd:element name="product_features" type="tns:product_featuresStruct" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="product_featuresStruct">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="tags">
+				<xsd:sequence>
+					<xsd:element name="tag" type="tns:tag" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="tag">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="xlink" type="xsd:string" minOccurs="0"/>
+				</xsd:all>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetProductsRequest">
+		<wsdl:part element="tns:GetProductsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetProductsResponse">
+		<wsdl:part element="tns:GetProductsResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetProductByIdRequest">
+		<wsdl:part element="tns:GetProductByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetProductByIdResponse">
+		<wsdl:part element="tns:GetProductByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateProductRequest">
+		<wsdl:part element="tns:CreateProductRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateProductResponse">
+		<wsdl:part element="tns:CreateProductResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateProductRequest">
+		<wsdl:part element="tns:UpdateProductRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateProductResponse">
+		<wsdl:part element="tns:UpdateProductResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteProductRequest">
+		<wsdl:part element="tns:DeleteProductRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteProductResponse">
+		<wsdl:part element="tns:DeleteProductResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Products">
+	
+	
+		<wsdl:operation name="GetProducts">
+			<wsdl:input message="tns:GetProductsRequest"></wsdl:input>
+			<wsdl:output message="tns:GetProductsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetProductById">
+			<wsdl:input message="tns:GetProductByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetProductByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateProduct">
+			<wsdl:input message="tns:CreateProductRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateProductResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateProduct">
+			<wsdl:input message="tns:UpdateProductRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateProductResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProduct">
+			<wsdl:input message="tns:DeleteProductRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteProductResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="ProductsSOAP" type="tns:Products">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetProducts">
+			<soap:operation soapAction="http://www.prestashop.com/products/GetProducts" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetProductById">
+			<soap:operation soapAction="http://www.prestashop.com/products/GetProductById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateProduct">
+			<soap:operation soapAction="http://www.prestashop.com/products/CreateProduct" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateProduct">
+			<soap:operation soapAction="http://www.prestashop.com/products/UpdateProduct" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProduct">
+			<soap:operation soapAction="http://www.prestashop.com/products/DeleteProduct" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Products">
+		<wsdl:port binding="tns:ProductsSOAP" name="ProductsSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/products/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

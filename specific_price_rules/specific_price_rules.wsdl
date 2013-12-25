@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Specific_price_rules/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Specific_price_rules/"
+	name="Specific_price_rules" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Specific_price_rules/">
+						
+			<xsd:element name="GetSpecific_price_rulesRequest" type="tns:GetInput" />
+			<xsd:element name="GetSpecific_price_rulesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetSpecific_price_ruleByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetSpecific_price_ruleByIdResponse" type="tns:specific_price_rules" />
+			
+			<xsd:element name="CreateSpecific_price_ruleRequest" type="tns:AddSpecific_price_ruleInput" />
+			<xsd:element name="CreateSpecific_price_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateSpecific_price_ruleRequest" type="tns:AddSpecific_price_ruleInput" />
+			<xsd:element name="UpdateSpecific_price_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteSpecific_price_ruleRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteSpecific_price_ruleResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddSpecific_price_ruleInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="specific_price_rule" type="tns:specific_price_rule" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="specific_price_rules">
+				<xsd:sequence>
+					<xsd:element name="specific_price_rule" type="tns:specific_price_rule" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="specific_price_rule">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="id_shop" type="xsd:string" />
+					<xsd:element name="id_country" type="xsd:string" />
+					<xsd:element name="id_currency" type="xsd:string" />
+					<xsd:element name="id_group" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="from_quantity" type="xsd:string" />
+					<xsd:element name="price" type="xsd:string" />
+					<xsd:element name="reduction" type="xsd:string" />
+					<xsd:element name="reduction_type" type="xsd:string" />
+					<xsd:element name="from" type="xsd:string" />
+					<xsd:element name="to" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetSpecific_price_rulesRequest">
+		<wsdl:part element="tns:GetSpecific_price_rulesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetSpecific_price_rulesResponse">
+		<wsdl:part element="tns:GetSpecific_price_rulesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetSpecific_price_ruleByIdRequest">
+		<wsdl:part element="tns:GetSpecific_price_ruleByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetSpecific_price_ruleByIdResponse">
+		<wsdl:part element="tns:GetSpecific_price_ruleByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateSpecific_price_ruleRequest">
+		<wsdl:part element="tns:CreateSpecific_price_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateSpecific_price_ruleResponse">
+		<wsdl:part element="tns:CreateSpecific_price_ruleResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateSpecific_price_ruleRequest">
+		<wsdl:part element="tns:UpdateSpecific_price_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateSpecific_price_ruleResponse">
+		<wsdl:part element="tns:UpdateSpecific_price_ruleResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteSpecific_price_ruleRequest">
+		<wsdl:part element="tns:DeleteSpecific_price_ruleRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteSpecific_price_ruleResponse">
+		<wsdl:part element="tns:DeleteSpecific_price_ruleResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Specific_price_rules">
+	
+	
+		<wsdl:operation name="GetSpecific_price_rules">
+			<wsdl:input message="tns:GetSpecific_price_rulesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetSpecific_price_rulesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSpecific_price_ruleById">
+			<wsdl:input message="tns:GetSpecific_price_ruleByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetSpecific_price_ruleByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateSpecific_price_rule">
+			<wsdl:input message="tns:CreateSpecific_price_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateSpecific_price_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSpecific_price_rule">
+			<wsdl:input message="tns:UpdateSpecific_price_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateSpecific_price_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteSpecific_price_rule">
+			<wsdl:input message="tns:DeleteSpecific_price_ruleRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteSpecific_price_ruleResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="Specific_price_rulesSOAP" type="tns:Specific_price_rules">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetSpecific_price_rules">
+			<soap:operation soapAction="http://www.prestashop.com/specific_price_rules/GetSpecific_price_rules" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSpecific_price_ruleById">
+			<soap:operation soapAction="http://www.prestashop.com/specific_price_rules/GetSpecific_price_ruleById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateSpecific_price_rule">
+			<soap:operation soapAction="http://www.prestashop.com/specific_price_rules/CreateSpecific_price_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSpecific_price_rule">
+			<soap:operation soapAction="http://www.prestashop.com/specific_price_rules/UpdateSpecific_price_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteSpecific_price_rule">
+			<soap:operation soapAction="http://www.prestashop.com/specific_price_rules/DeleteSpecific_price_rule" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Specific_price_rules">
+		<wsdl:port binding="tns:Specific_price_rulesSOAP" name="Specific_price_rulesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/specific_price_rules/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

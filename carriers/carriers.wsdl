@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Carriers/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Carriers/"
+	name="Carriers" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Carriers/">
+			
+			<xsd:element name="GetCarriersRequest" type="tns:GetInput" />
+			<xsd:element name="GetCarriersResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetCarrierByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetCarrierByIdResponse" type="tns:carriers" />
+			
+			<xsd:element name="CreateCarrierRequest" type="tns:AddCarrierInput" />
+			<xsd:element name="CreateCarrierResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateCarrierRequest" type="tns:AddCarrierInput" />
+			<xsd:element name="UpdateCarrierResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteCarrierRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteCarrierResponse" type="tns:commonReturn" />
+			
+		
+			
+			<xsd:complexType name="AddCarrierInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="carrier" type="tns:carrier" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			
+			<xsd:complexType name="carriers">
+				<xsd:sequence>
+					<xsd:element name="carrier" type="tns:carrier" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="carrier">
+				<xsd:all>
+					
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="deleted" type="xsd:string" />
+					<xsd:element name="is_module" type="xsd:string" />
+					<xsd:element name="id_tax_rules_group" type="xsd:string" />
+					<xsd:element name="id_reference" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+					<xsd:element name="is_free" type="xsd:string" />
+					<xsd:element name="url" type="xsd:string" />
+					<xsd:element name="shipping_handling" type="xsd:string" />
+					<xsd:element name="shipping_external" type="xsd:string" />
+					<xsd:element name="range_behavior" type="xsd:string" />
+					<xsd:element name="shipping_method" type="xsd:string" />
+					<xsd:element name="max_width" type="xsd:string" />
+					<xsd:element name="max_height" type="xsd:string" />
+					<xsd:element name="max_depth" type="xsd:string" />
+					<xsd:element name="max_weight" type="xsd:string" />
+					<xsd:element name="grade" type="xsd:string" />
+					<xsd:element name="external_module_name" type="xsd:string" />
+					<xsd:element name="need_range" type="xsd:string" />
+					<xsd:element name="position" type="xsd:string" />
+					<xsd:element name="delay" type="tns:delay" />				
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="delay">
+				<xsd:all>
+					<xsd:element name="language" type="tns:language" />
+				</xsd:all>
+			</xsd:complexType>	
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>			
+	
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetCarriersRequest">
+		<wsdl:part element="tns:GetCarriersRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCarriersResponse">
+		<wsdl:part element="tns:GetCarriersResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetCarrierByIdRequest">
+		<wsdl:part element="tns:GetCarrierByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCarrierByIdResponse">
+		<wsdl:part element="tns:GetCarrierByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateCarrierRequest">
+		<wsdl:part element="tns:CreateCarrierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateCarrierResponse">
+		<wsdl:part element="tns:CreateCarrierResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCarrierRequest">
+		<wsdl:part element="tns:UpdateCarrierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCarrierResponse">
+		<wsdl:part element="tns:UpdateCarrierResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCarrierRequest">
+		<wsdl:part element="tns:DeleteCarrierRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCarrierResponse">
+		<wsdl:part element="tns:DeleteCarrierResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Carriers">
+	
+	
+		<wsdl:operation name="GetCarriers">
+			<wsdl:input message="tns:GetCarriersRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCarriersResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCarrierById">
+			<wsdl:input message="tns:GetCarrierByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCarrierByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCarrier">
+			<wsdl:input message="tns:CreateCarrierRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateCarrierResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCarrier">
+			<wsdl:input message="tns:UpdateCarrierRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateCarrierResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCarrier">
+			<wsdl:input message="tns:DeleteCarrierRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteCarrierResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="CarriersSOAP" type="tns:Carriers">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetCarriers">
+			<soap:operation soapAction="http://www.prestashop.com/carriers/GetCarriers" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCarrierById">
+			<soap:operation soapAction="http://www.prestashop.com/carriers/GetCarrierById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCarrier">
+			<soap:operation soapAction="http://www.prestashop.com/carriers/CreateCarrier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCarrier">
+			<soap:operation soapAction="http://www.prestashop.com/carriers/UpdateCarrier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCarrier">
+			<soap:operation soapAction="http://www.prestashop.com/carriers/DeleteCarrier" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Carriers">
+		<wsdl:port binding="tns:CarriersSOAP" name="CarriersSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/carriers/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

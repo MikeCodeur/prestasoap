@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.prestashop.com/Currencies/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	targetNamespace="http://www.prestashop.com/Currencies/"
+	name="Currencies" >
+	
+	<wsdl:types>
+	
+		<xsd:schema targetNamespace="http://www.prestashop.com/Currencies/">
+						
+			<xsd:element name="GetCurrenciesRequest" type="tns:GetInput" />
+			<xsd:element name="GetCurrenciesResponse" type="tns:commonXlinks" />
+			
+			<xsd:element name="GetCurrencyByIdRequest" type="tns:GetInput" />
+			<xsd:element name="GetCurrencyByIdResponse" type="tns:currencies" />
+			
+			<xsd:element name="CreateCurrencyRequest" type="tns:AddCurrencyInput" />
+			<xsd:element name="CreateCurrencyResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="UpdateCurrencyRequest" type="tns:AddCurrencyInput" />
+			<xsd:element name="UpdateCurrencyResponse" type="tns:commonReturn" />
+			
+			<xsd:element name="DeleteCurrencyRequest" type="tns:DelInput" />
+			<xsd:element name="DeleteCurrencyResponse" type="tns:commonReturn" />
+			
+			<xsd:complexType name="AddCurrencyInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="currency" type="tns:currency" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="currencies">
+				<xsd:sequence>
+					<xsd:element name="currency" type="tns:currency" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="currency">
+				<xsd:all>
+					<!-- get from ?schema=blank-->
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="active" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+
+			<xsd:complexType name="loginInfo">
+				<xsd:all>
+					<xsd:element name="key" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="limit_start" type="xsd:string" />
+					<xsd:element name="limit_end" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DelInput">
+				<xsd:all>
+					<xsd:element name="loginInfo" type="tns:loginInfo" />
+					<xsd:element name="id" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonReturn">
+				<xsd:all>
+					<xsd:element name="returnCode" type="xsd:string" />
+					<xsd:element name="message" type="xsd:string" />
+					<xsd:element name="returnData" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlink">
+				<xsd:all>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="xlink" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+				</xsd:all>
+			</xsd:complexType>
+			
+			<xsd:complexType name="commonXlinks">
+				<xsd:sequence>
+					<xsd:element name="commonXlink" type="tns:commonXlink" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="langStruct">
+				<xsd:sequence>
+					<xsd:element name="language" type="tns:language" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+				
+			<xsd:complexType name="language">
+				<xsd:attribute name="id" type="xsd:string"  />
+				<xsd:attribute name="xlink" type="xsd:string" />
+				<xsd:attribute name="value" type="xsd:string" />
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+		
+	<wsdl:message name="GetCurrenciesRequest">
+		<wsdl:part element="tns:GetCurrenciesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCurrenciesResponse">
+		<wsdl:part element="tns:GetCurrenciesResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="GetCurrencyByIdRequest">
+		<wsdl:part element="tns:GetCurrencyByIdRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetCurrencyByIdResponse">
+		<wsdl:part element="tns:GetCurrencyByIdResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="CreateCurrencyRequest">
+		<wsdl:part element="tns:CreateCurrencyRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="CreateCurrencyResponse">
+		<wsdl:part element="tns:CreateCurrencyResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCurrencyRequest">
+		<wsdl:part element="tns:UpdateCurrencyRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UpdateCurrencyResponse">
+		<wsdl:part element="tns:UpdateCurrencyResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCurrencyRequest">
+		<wsdl:part element="tns:DeleteCurrencyRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="DeleteCurrencyResponse">
+		<wsdl:part element="tns:DeleteCurrencyResponse" name="parameters" />
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="Currencies">
+	
+	
+		<wsdl:operation name="GetCurrencies">
+			<wsdl:input message="tns:GetCurrenciesRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCurrenciesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCurrencyById">
+			<wsdl:input message="tns:GetCurrencyByIdRequest"></wsdl:input>
+			<wsdl:output message="tns:GetCurrencyByIdResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCurrency">
+			<wsdl:input message="tns:CreateCurrencyRequest"></wsdl:input>
+			<wsdl:output message="tns:CreateCurrencyResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCurrency">
+			<wsdl:input message="tns:UpdateCurrencyRequest"></wsdl:input>
+			<wsdl:output message="tns:UpdateCurrencyResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCurrency">
+			<wsdl:input message="tns:DeleteCurrencyRequest"></wsdl:input>
+			<wsdl:output message="tns:DeleteCurrencyResponse"></wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="CurrenciesSOAP" type="tns:Currencies">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetCurrencies">
+			<soap:operation soapAction="http://www.prestashop.com/currencies/GetCurrencies" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCurrencyById">
+			<soap:operation soapAction="http://www.prestashop.com/currencies/GetCurrencyById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateCurrency">
+			<soap:operation soapAction="http://www.prestashop.com/currencies/CreateCurrency" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateCurrency">
+			<soap:operation soapAction="http://www.prestashop.com/currencies/UpdateCurrency" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCurrency">
+			<soap:operation soapAction="http://www.prestashop.com/currencies/DeleteCurrency" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	
+	</wsdl:binding>
+	<wsdl:service name="Currencies">
+		<wsdl:port binding="tns:CurrenciesSOAP" name="CurrenciesSOAP">
+			<soap:address
+				location="http://___HOST___/___BASE___/___MODULEDIR___/currencies/___SERVICE___" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
