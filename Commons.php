@@ -27,7 +27,7 @@ require_once('../../../config/config.inc.php');
 
 require_once('PSWebServiceLibrary.php');
 require_once('CRUDMapper.php');
-require_once('lic.php');
+//require_once('lic.php');
 /**
  * Class CommonReturn
  *
