@@ -1,3 +1,5 @@
+When copying the module to Prestashop_install_folder/modules/ make sure that the folder name is "prestasoap"; otherwise it will not show up in the Modules section in the back office.
+
 1- PHP_CURL and PHP_SOAP modules must be enabled
 
 2- edit config.php file
